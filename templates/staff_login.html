@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Staff Login{% endblock %}
+
+{% block body %}
+
+<div class="staff-login-page">
+
+    <!-- Animated Background -->
+    <div class="staff-bg"></div>
+
+    <div class="staff-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="staff-login-wrap">
+
+        <!-- Left Branding -->
+        <div class="staff-intro">
+
+            <div class="staff-brand">
+                <div class="kj-mark">KJ</div>
+
+                <div>
+                    <strong>KRISTU JAYANTI</strong>
+                    <small>DEEMED TO BE UNIVERSITY</small>
+                </div>
+            </div>
+
+            <div class="staff-title">
+                <em>KJ DIGITAL CAMPUS</em>
+
+                <h1>
+                    Empower.
+                    <br>
+                    <span>Educate.</span>
+                    <br>
+                    Inspire.
+                </h1>
+
+                <p>
+                    Welcome to the KJC Faculty & Staff Portal.
+                    Manage academics, students, attendance,
+                    assessments and campus activities from one place.
+                </p>
+            </div>
+
+            <div class="staff-features">
+
+                <div>
+                    <span>01</span>
+                    <b>Academic Management</b>
+                </div>
+
+                <div>
+                    <span>02</span>
+                    <b>Student Performance</b>
+                </div>
+
+                <div>
+                    <span>03</span>
+                    <b>Attendance & Assessments</b>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Login Card -->
+        <div class="staff-login-card">
+
+            <div class="staff-card-top">
+
+                <div class="staff-icon">
+                    ◈
+                </div>
+
+                <div>
+                    <small>STAFF PORTAL</small>
+                    <h2>Welcome back.</h2>
+                </div>
+
+            </div>
+
+            <p class="staff-subtitle">
+                Sign in to access your faculty workspace.
+            </p>
+
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="staff-alert {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+
+            <form method="post" class="staff-form">
+
+                <div class="staff-field">
+
+                    <label for="email">
+                        Official Email
+                    </label>
+
+                    <div class="staff-input">
+                        <span>✉</span>
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="staff@kjc.edu.in"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="staff-field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="staff-input">
+                        <span>●</span>
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="staff-options">
+
+                    <label class="remember">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+
+                    <a href="#">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button type="submit" class="staff-login-btn">
+                    ENTER STAFF PORTAL
+                    <span>↗</span>
+                </button>
+
+            </form>
+
+
+            <div class="security-note">
+                <span>🔒</span>
+                <div>
+                    <b>Secure Faculty Access</b>
+                    <small>
+                        Authorized KJC staff members only
+                    </small>
+                </div>
+            </div>
+
+
+            <div class="staff-back">
+                <a href="{{ url_for('home') }}">
+                    ← Back to KJC Campus
+                </a>
+
+                <a href="{{ url_for('login') }}">
+                    Student Login
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

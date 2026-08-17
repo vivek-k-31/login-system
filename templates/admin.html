@@ -1,0 +1,4452 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Admin Control Center{% endblock %}
+
+{% block body %}
+
+<style>
+
+/* =========================================================
+   KJC ADMIN CONTROL CENTER
+   PREMIUM WHITE / BLUE CMS
+========================================================= */
+
+:root {
+    --admin-bg: #f5f7fb;
+    --admin-surface: #ffffff;
+    --admin-surface-soft: #f8fafc;
+
+    --admin-text: #111827;
+    --admin-text-2: #374151;
+    --admin-muted: #6b7280;
+    --admin-light: #9ca3af;
+
+    --admin-border: #e5e7eb;
+    --admin-border-strong: #d1d5db;
+
+    --admin-primary: #2563eb;
+    --admin-primary-dark: #1d4ed8;
+    --admin-primary-soft: #eff6ff;
+
+    --admin-success: #16a34a;
+    --admin-success-soft: #f0fdf4;
+
+    --admin-danger: #dc2626;
+    --admin-danger-soft: #fef2f2;
+
+    --admin-warning: #d97706;
+    --admin-warning-soft: #fffbeb;
+
+    --admin-shadow:
+        0 10px 30px rgba(15, 23, 42, .06);
+
+    --admin-shadow-lg:
+        0 20px 50px rgba(15, 23, 42, .10);
+
+    --admin-radius: 16px;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background:
+        #f5f7fb;
+
+    color:
+        var(--admin-text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   MAIN APP
+========================================================= */
+
+.kjc-admin {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(37, 99, 235, .045),
+            transparent 28%
+        ),
+        #f5f7fb;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.admin-sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 260px;
+
+    padding:
+        25px 17px;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border-right:
+        1px solid var(--admin-border);
+
+    box-shadow:
+        5px 0 25px rgba(15,23,42,.035);
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.admin-brand {
+    padding:
+        4px 10px 24px;
+
+    border-bottom:
+        1px solid var(--admin-border);
+}
+
+.admin-brand-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.admin-logo {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid #dbeafe;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #dbeafe
+        );
+
+    color:
+        var(--admin-primary);
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing:
+        -1.5px;
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,.10);
+}
+
+.admin-brand-name {
+    color:
+        #111827;
+
+    font-size:
+        13px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.5px;
+}
+
+.admin-brand-sub {
+    margin-top:
+        4px;
+
+    color:
+        #9ca3af;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        1.6px;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.admin-nav {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        5px;
+
+    margin-top:
+        25px;
+}
+
+.admin-nav button {
+    position: relative;
+
+    width: 100%;
+
+    min-height:
+        49px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid transparent;
+
+    border-radius:
+        11px;
+
+    background:
+        transparent;
+
+    color:
+        #6b7280;
+
+    font-family:
+        inherit;
+
+    font-size:
+        10px;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        .4px;
+
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+
+    transition:
+        .22s ease;
+}
+
+.admin-nav button:hover {
+    color:
+        #1f2937;
+
+    background:
+        #f8fafc;
+
+    border-color:
+        #eef2f7;
+
+    transform:
+        translateX(2px);
+}
+
+.admin-nav button.active {
+    color:
+        var(--admin-primary);
+
+    background:
+        var(--admin-primary-soft);
+
+    border-color:
+        #dbeafe;
+
+    box-shadow:
+        inset 3px 0 0 var(--admin-primary);
+}
+
+.admin-nav-icon {
+    width:
+        22px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        #9ca3af;
+
+    font-size:
+        14px;
+
+    transition:
+        .2s ease;
+}
+
+.admin-nav button.active
+.admin-nav-icon {
+    color:
+        var(--admin-primary);
+}
+
+.admin-nav-text {
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.admin-sidebar-footer {
+    margin-top:
+        auto;
+
+    padding-top:
+        17px;
+
+    border-top:
+        1px solid var(--admin-border);
+}
+
+.admin-logout {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        12px 13px;
+
+    border-radius:
+        10px;
+
+    color:
+        #6b7280;
+
+    text-decoration:
+        none;
+
+    font-size:
+        10px;
+
+    font-weight:
+        750;
+
+    transition:
+        .2s ease;
+}
+
+.admin-logout:hover {
+    color:
+        var(--admin-danger);
+
+    background:
+        var(--admin-danger-soft);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.admin-main {
+    margin-left:
+        260px;
+
+    width:
+        calc(100% - 260px);
+
+    min-height:
+        100vh;
+
+    padding:
+        30px 42px 70px;
+
+    /* Campus main image as the admin page background */
+    background-image:
+        linear-gradient(
+            rgba(245,247,251,.88),
+            rgba(245,247,251,.94)
+        ),
+        url("{{ hero_image }}");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    background-attachment:
+        fixed;
+
+    background-repeat:
+        no-repeat;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.admin-header {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        28px;
+
+    padding-bottom:
+        23px;
+
+    border-bottom:
+        1px solid var(--admin-border);
+}
+
+.admin-header-label {
+    color:
+        #9ca3af;
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2.5px;
+}
+
+.admin-header h1 {
+    margin:
+        7px 0 0;
+
+    color:
+        #111827;
+
+    font-size:
+        clamp(27px, 3vw, 38px);
+
+    line-height:
+        1.1;
+
+    letter-spacing:
+        -1.5px;
+}
+
+.admin-pill {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        10px 15px;
+
+    border:
+        1px solid #bbf7d0;
+
+    border-radius:
+        30px;
+
+    background:
+        #f0fdf4;
+
+    color:
+        #15803d;
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        .9px;
+}
+
+.admin-dot {
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34,197,94,.12);
+
+    animation:
+        adminPulse 2s infinite;
+}
+
+@keyframes adminPulse {
+
+    0%,100% {
+        opacity: .55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   VIEWS
+========================================================= */
+
+.admin-view {
+    display:
+        none;
+
+    animation:
+        adminView .3s ease both;
+}
+
+.admin-view.active {
+    display:
+        block;
+}
+
+@keyframes adminView {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.admin-title {
+    margin:
+        0 0 22px;
+
+    color:
+        #111827;
+
+    font-size:
+        27px;
+
+    font-weight:
+        850;
+
+    letter-spacing:
+        -1px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.admin-hero {
+    position:
+        relative;
+
+    min-height:
+        290px;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    padding:
+        42px;
+
+    margin-bottom:
+        20px;
+
+    border:
+        1px solid var(--admin-border);
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            #f8fafc
+        );
+
+    box-shadow:
+        var(--admin-shadow-lg);
+}
+
+.admin-hero-image {
+    position:
+        absolute;
+
+    right:
+        0;
+
+    top:
+        0;
+
+    width:
+        68%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    opacity:
+        .34;
+
+    filter:
+        grayscale(20%)
+        contrast(105%);
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            #000 40%
+        );
+
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            #000 40%
+        );
+}
+
+.admin-hero-overlay {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.98) 0%,
+            rgba(255,255,255,.90) 38%,
+            rgba(255,255,255,.15) 100%
+        );
+}
+
+.admin-hero-content {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        650px;
+}
+
+.admin-hero-label {
+    color:
+        var(--admin-primary);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        3px;
+
+    font-weight:
+        900;
+}
+
+.admin-hero h2 {
+    margin:
+        10px 0 8px;
+
+    color:
+        #111827;
+
+    font-size:
+        clamp(29px, 4vw, 46px);
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -2px;
+}
+
+.admin-hero p {
+    margin:
+        0;
+
+    max-width:
+        570px;
+
+    color:
+        #6b7280;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.admin-stats {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        14px;
+
+    margin-bottom:
+        20px;
+}
+
+.admin-stat {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        140px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid var(--admin-border);
+
+    border-radius:
+        15px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        var(--admin-shadow);
+
+    transition:
+        .25s ease;
+}
+
+.admin-stat::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        -25px;
+
+    bottom:
+        -30px;
+
+    width:
+        90px;
+
+    height:
+        90px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(37,99,235,.045);
+}
+
+.admin-stat:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #dbeafe;
+
+    box-shadow:
+        0 18px 35px rgba(15,23,42,.09);
+}
+
+.admin-stat small {
+    display:
+        block;
+
+    color:
+        #9ca3af;
+
+    font-size:
+        8px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.8px;
+}
+
+.admin-stat strong {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        block;
+
+    margin-top:
+        13px;
+
+    color:
+        #111827;
+
+    font-size:
+        33px;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -1.5px;
+}
+
+.admin-stat span {
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    color:
+        #9ca3af;
+
+    font-size:
+        9px;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.admin-card {
+    padding:
+        25px;
+
+    border:
+        1px solid var(--admin-border);
+
+    border-radius:
+        15px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        var(--admin-shadow);
+
+    transition:
+        .25s ease;
+
+    margin-bottom:
+        18px;
+}
+
+.admin-card:hover {
+    border-color:
+        #dbe2ea;
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.075);
+}
+
+.admin-card h3 {
+    margin:
+        0 0 20px;
+
+    color:
+        #111827;
+
+    font-size:
+        15px;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.students-layout {
+    display:
+        grid;
+
+    grid-template-columns:
+        1.5fr .8fr;
+
+    gap:
+        18px;
+}
+
+.academic-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        18px;
+}
+
+.notice-wrap {
+    max-width:
+        750px;
+}
+
+.cms-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        18px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.admin-table-wrap {
+    overflow-x:
+        auto;
+}
+
+.admin-table {
+    width:
+        100%;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0;
+
+    font-size:
+        10px;
+}
+
+.admin-table th {
+    padding:
+        13px 10px;
+
+    color:
+        #9ca3af;
+
+    background:
+        #f8fafc;
+
+    font-size:
+        8px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.3px;
+
+    text-align:
+        left;
+
+    border-top:
+        1px solid var(--admin-border);
+
+    border-bottom:
+        1px solid var(--admin-border);
+}
+
+.admin-table th:first-child {
+    border-top-left-radius:
+        9px;
+}
+
+.admin-table th:last-child {
+    border-top-right-radius:
+        9px;
+}
+
+.admin-table td {
+    padding:
+        15px 10px;
+
+    color:
+        #6b7280;
+
+    border-bottom:
+        1px solid #f0f2f5;
+
+    white-space:
+        nowrap;
+}
+
+.admin-table tr:hover td {
+    background:
+        #fafcff;
+}
+
+.admin-table td b {
+    color:
+        #111827;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.admin-form {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+}
+
+.admin-input,
+.admin-select,
+.admin-textarea {
+    width:
+        100%;
+
+    min-height:
+        45px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid #dfe3e8;
+
+    border-radius:
+        10px;
+
+    outline:
+        none;
+
+    background:
+        #fff;
+
+    color:
+        #111827;
+
+    font-family:
+        inherit;
+
+    font-size:
+        10px;
+
+    transition:
+        .2s ease;
+}
+
+.admin-textarea {
+    min-height:
+        120px;
+
+    padding:
+        13px;
+
+    resize:
+        vertical;
+
+    line-height:
+        1.6;
+}
+
+.admin-input:hover,
+.admin-select:hover,
+.admin-textarea:hover {
+    border-color:
+        #cbd5e1;
+}
+
+.admin-input:focus,
+.admin-select:focus,
+.admin-textarea:focus {
+    border-color:
+        #60a5fa;
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(37,99,235,.08);
+}
+
+.admin-input::placeholder,
+.admin-textarea::placeholder {
+    color:
+        #a1a1aa;
+}
+
+.admin-select {
+    cursor:
+        pointer;
+}
+
+.admin-select option {
+    background:
+        #fff;
+
+    color:
+        #111827;
+}
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.admin-input[type="file"] {
+    padding:
+        10px;
+
+    cursor:
+        pointer;
+
+    background:
+        #f8fafc;
+}
+
+.admin-input[type="file"]::file-selector-button {
+    margin-right:
+        10px;
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid #dbeafe;
+
+    border-radius:
+        7px;
+
+    background:
+        #eff6ff;
+
+    color:
+        #2563eb;
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.admin-btn {
+    min-height:
+        43px;
+
+    padding:
+        0 17px;
+
+    border:
+        1px solid var(--admin-primary);
+
+    border-radius:
+        9px;
+
+    background:
+        var(--admin-primary);
+
+    color:
+        #fff;
+
+    font-family:
+        inherit;
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        .8px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .22s ease;
+}
+
+.admin-btn:hover {
+    background:
+        var(--admin-primary-dark);
+
+    border-color:
+        var(--admin-primary-dark);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 9px 20px
+        rgba(37,99,235,.20);
+}
+
+.admin-btn:active {
+    transform:
+        translateY(0);
+}
+
+.admin-btn:disabled {
+    opacity:
+        .55;
+
+    cursor:
+        wait;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+.admin-btn.danger {
+    background:
+        #fff;
+
+    color:
+        var(--admin-danger);
+
+    border-color:
+        #fecaca;
+}
+
+.admin-btn.danger:hover {
+    background:
+        var(--admin-danger-soft);
+
+    color:
+        #b91c1c;
+
+    border-color:
+        #fca5a5;
+
+    box-shadow:
+        0 8px 18px rgba(220,38,38,.10);
+}
+
+.admin-btn.small {
+    min-height:
+        34px;
+
+    padding:
+        0 11px;
+
+    font-size:
+        8px;
+}
+
+
+/* =========================================================
+   CMS PREVIEW
+========================================================= */
+
+.cms-preview {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        260px;
+
+    border-radius:
+        15px;
+
+    border:
+        1px solid var(--admin-border);
+
+    background:
+        #eef2f7;
+
+    box-shadow:
+        var(--admin-shadow);
+}
+
+.cms-preview img {
+    width:
+        100%;
+
+    height:
+        260px;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+}
+
+.cms-preview-overlay {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    padding:
+        22px;
+
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.78)
+        );
+}
+
+.cms-preview-text {
+    width:
+        100%;
+}
+
+.cms-preview-text small {
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:
+        8px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+}
+
+.cms-preview-text h3 {
+    margin:
+        7px 0 0;
+
+    color:
+        #fff;
+
+    font-size:
+        24px;
+
+    line-height:
+        1.1;
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.media-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+}
+
+.media-card {
+    overflow:
+        hidden;
+
+    border:
+        1px solid var(--admin-border);
+
+    border-radius:
+        13px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        var(--admin-shadow);
+
+    transition:
+        .25s ease;
+}
+
+.media-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.09);
+
+    border-color:
+        #dbeafe;
+}
+
+.media-card img {
+    width:
+        100%;
+
+    height:
+        160px;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    background:
+        #f1f5f9;
+}
+
+.media-info {
+    padding:
+        14px;
+}
+
+.media-name {
+    color:
+        #111827;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+.media-actions {
+    display:
+        flex;
+
+    gap:
+        7px;
+
+    margin-top:
+        10px;
+}
+
+
+/* =========================================================
+   LEAVE APPROVAL
+========================================================= */
+
+.leave-card {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    padding:
+        20px 22px;
+
+    margin-bottom:
+        12px;
+
+    border:
+        1px solid var(--admin-border);
+
+    border-radius:
+        14px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        var(--admin-shadow);
+
+    transition:
+        .22s ease;
+}
+
+.leave-card:hover {
+    border-color:
+        #dbeafe;
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.075);
+}
+
+.leave-info {
+    flex:
+        1;
+}
+
+.leave-info b {
+    color:
+        #111827;
+
+    font-size:
+        11px;
+}
+
+.leave-info p {
+    margin:
+        6px 0 0;
+
+    color:
+        #6b7280;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.7;
+}
+
+.leave-status {
+    padding:
+        7px 11px;
+
+    border:
+        1px solid #dbeafe;
+
+    border-radius:
+        20px;
+
+    background:
+        #eff6ff;
+
+    color:
+        #2563eb;
+
+    font-size:
+        8px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1px;
+
+    white-space:
+        nowrap;
+}
+
+.leave-actions {
+    display:
+        flex;
+
+    gap:
+        8px;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.admin-empty {
+    padding:
+        35px;
+
+    text-align:
+        center;
+
+    color:
+        #9ca3af;
+
+    font-size:
+        11px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.admin-toast {
+    position:
+        fixed;
+
+    right:
+        25px;
+
+    bottom:
+        25px;
+
+    z-index:
+        9999;
+
+    max-width:
+        350px;
+
+    padding:
+        14px 18px;
+
+    border:
+        1px solid #dbeafe;
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    color:
+        #1f2937;
+
+    font-size:
+        10px;
+
+    font-weight:
+        750;
+
+    box-shadow:
+        0 20px 50px rgba(15,23,42,.15);
+
+    transform:
+        translateY(20px);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        .3s ease;
+}
+
+.admin-toast.show {
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE 1150
+========================================================= */
+
+@media (max-width: 1150px) {
+
+    .admin-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .students-layout,
+    .cms-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .media-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 900
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .admin-sidebar {
+        width:
+            78px;
+
+        padding:
+            20px 10px;
+    }
+
+    .admin-brand-name,
+    .admin-brand-sub,
+    .admin-nav-text,
+    .admin-logout-text {
+        display:
+            none;
+    }
+
+    .admin-brand {
+        padding:
+            0 0 20px;
+    }
+
+    .admin-brand-row {
+        justify-content:
+            center;
+    }
+
+    .admin-nav button {
+        justify-content:
+            center;
+
+        padding:
+            0;
+    }
+
+    .admin-nav-icon {
+        width:
+            auto;
+    }
+
+    .admin-logout {
+        justify-content:
+            center;
+    }
+
+    .admin-main {
+        margin-left:
+            78px;
+
+        width:
+            calc(100% - 78px);
+
+        padding:
+            25px;
+    }
+
+    .academic-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 600
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-sidebar {
+        position:
+            fixed;
+
+        top:
+            auto;
+
+        bottom:
+            0;
+
+        width:
+            100%;
+
+        height:
+            70px;
+
+        flex-direction:
+            row;
+
+        padding:
+            8px;
+
+        border-right:
+            0;
+
+        border-top:
+            1px solid var(--admin-border);
+
+        box-shadow:
+            0 -8px 25px rgba(15,23,42,.08);
+    }
+
+    .admin-brand,
+    .admin-sidebar-footer {
+        display:
+            none;
+    }
+
+    .admin-nav {
+        width:
+            100%;
+
+        margin:
+            0;
+
+        flex-direction:
+            row;
+
+        justify-content:
+            space-around;
+    }
+
+    .admin-nav button {
+        flex:
+            1;
+
+        height:
+            52px;
+
+        min-height:
+            52px;
+    }
+
+    .admin-nav button:nth-child(n+7) {
+        display:
+            none;
+    }
+
+    .admin-main {
+        margin-left:
+            0;
+
+        width:
+            100%;
+
+        padding:
+            20px 15px 95px;
+    }
+
+    .admin-header {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+    .admin-pill {
+        width:
+            100%;
+
+        justify-content:
+            center;
+    }
+
+    .admin-stats {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .admin-hero {
+        min-height:
+            300px;
+
+        padding:
+            28px 24px;
+    }
+
+    .admin-hero-image {
+        width:
+            100%;
+
+        opacity:
+            .25;
+    }
+
+    .leave-card {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+
+    .leave-actions {
+        width:
+            100%;
+    }
+
+    .leave-actions button {
+        flex:
+            1;
+    }
+
+    .media-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 390
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .admin-stats {
+        grid-template-columns:
+            1fr;
+    }
+
+    .admin-card {
+        padding:
+            18px;
+    }
+
+    .admin-hero {
+        padding:
+            24px 20px;
+    }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width:
+        7px;
+}
+
+::-webkit-scrollbar-track {
+    background:
+        #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        #cbd5e1;
+
+    border-radius:
+        10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        #94a3b8;
+}
+
+</style>
+
+
+<div class="kjc-admin">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="admin-sidebar">
+
+    <div class="admin-brand">
+
+        <div class="admin-brand-row">
+
+            <div class="admin-logo">
+                KJ
+            </div>
+
+            <div>
+
+                <div class="admin-brand-name">
+                    KJ ADMIN
+                </div>
+
+                <div class="admin-brand-sub">
+                    FULL CONTROL CENTER
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="admin-nav">
+
+        <button
+            class="active"
+            data-target="admin-overview"
+        >
+            <span class="admin-nav-icon">
+                ◈
+            </span>
+
+            <span class="admin-nav-text">
+                Overview
+            </span>
+        </button>
+
+
+        <button data-target="admin-students">
+
+            <span class="admin-nav-icon">
+                ◎
+            </span>
+
+            <span class="admin-nav-text">
+                Students
+            </span>
+
+        </button>
+
+
+        <button data-target="admin-data">
+
+            <span class="admin-nav-icon">
+                ◫
+            </span>
+
+            <span class="admin-nav-text">
+                Academic Data
+            </span>
+
+        </button>
+
+
+        <button data-target="admin-content">
+
+            <span class="admin-nav-icon">
+                ✦
+            </span>
+
+            <span class="admin-nav-text">
+                Website Control
+            </span>
+
+        </button>
+
+
+        <button data-target="admin-media">
+
+            <span class="admin-nav-icon">
+                ▧
+            </span>
+
+            <span class="admin-nav-text">
+                Photos / Media
+            </span>
+
+        </button>
+
+
+        <button data-target="admin-notices">
+
+            <span class="admin-nav-icon">
+                ◇
+            </span>
+
+            <span class="admin-nav-text">
+                Notices
+            </span>
+
+        </button>
+
+
+        <button data-target="admin-leaves">
+
+            <span class="admin-nav-icon">
+                ✓
+            </span>
+
+            <span class="admin-nav-text">
+                Leave Approval
+            </span>
+
+        </button>
+
+    </nav>
+
+
+    <div class="admin-sidebar-footer">
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="admin-logout"
+        >
+
+            <span>
+                ↪
+            </span>
+
+            <span class="admin-logout-text">
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="admin-main">
+
+
+<header class="admin-header">
+
+    <div>
+
+        <div class="admin-header-label">
+            KJ ADMINISTRATION
+        </div>
+
+        <h1>
+            Campus control center
+        </h1>
+
+    </div>
+
+
+    <div class="admin-pill">
+
+        <span class="admin-dot"></span>
+
+        FULL ADMIN ACCESS
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     OVERVIEW
+===================================================== -->
+
+<section
+    id="admin-overview"
+    class="admin-view active"
+>
+
+    <div class="admin-hero">
+
+        <img
+            class="admin-hero-image"
+            src="{{ hero_image }}"
+            alt="KJC Campus"
+        >
+
+        <div class="admin-hero-overlay"></div>
+
+        <div class="admin-hero-content">
+
+            <div class="admin-hero-label">
+                ADMIN MODE
+            </div>
+
+            <h2>
+                {{ site_title }}
+            </h2>
+
+            <p>
+                {{ site_subtitle }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-stats">
+
+
+        <div class="admin-stat">
+
+            <small>
+                STUDENTS
+            </small>
+
+            <strong>
+                {{ students|length }}
+            </strong>
+
+            <span>
+                Registered records
+            </span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <small>
+                PENDING LEAVES
+            </small>
+
+            <strong>
+                {{
+                    leaves
+                    |selectattr('status','equalto','Pending')
+                    |list
+                    |length
+                }}
+            </strong>
+
+            <span>
+                Approval queue
+            </span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <small>
+                MEDIA
+            </small>
+
+            <strong>
+                {{ media|length }}
+            </strong>
+
+            <span>
+                Website photos
+            </span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <small>
+                ACCESS
+            </small>
+
+            <strong>
+                FULL
+            </strong>
+
+            <span>
+                Administrator privileges
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <h3>
+            Administration overview
+        </h3>
+
+        <p
+            style="
+                margin:0;
+                color:#6b7280;
+                font-size:11px;
+                line-height:1.8;
+            "
+        >
+            This control center gives the administrator complete
+            control over students, academic records, notices,
+            leave requests, website content, fonts and media.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STUDENTS
+===================================================== -->
+
+<section
+    id="admin-students"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Student management
+    </h2>
+
+
+    <div class="students-layout">
+
+
+        <div class="admin-card">
+
+            <h3>
+                Student directory
+            </h3>
+
+            <div class="admin-table-wrap">
+
+                <table class="admin-table">
+
+                    <tr>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <th>
+                            EMAIL
+                        </th>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            COURSE
+                        </th>
+
+                        <th>
+                            SEMESTER
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+
+                    {% for s in students %}
+
+                    <tr>
+
+                        <td>
+                            <b>
+                                {{ s.name }}
+                            </b>
+                        </td>
+
+                        <td>
+                            {{ s.email }}
+                        </td>
+
+                        <td>
+                            {{ s.student_id }}
+                        </td>
+
+                        <td>
+                            {{ s.course }}
+                        </td>
+
+                        <td>
+                            {{ s.semester }}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="admin-btn danger small delete-student"
+                                data-id="{{ s.id }}"
+                            >
+                                DELETE
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="admin-empty"
+                        >
+                            No students found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <h3>
+                Add student
+            </h3>
+
+            <form
+                id="new-student"
+                class="admin-form"
+            >
+
+                <input
+                    class="admin-input"
+                    name="name"
+                    placeholder="Full name"
+                    required
+                >
+
+                <input
+                    class="admin-input"
+                    name="email"
+                    type="email"
+                    placeholder="College email"
+                    required
+                >
+
+                <input
+                    class="admin-input"
+                    name="student_id"
+                    placeholder="Student ID"
+                    required
+                >
+
+                <input
+                    class="admin-input"
+                    name="course"
+                    placeholder="Course"
+                    required
+                >
+
+                <input
+                    class="admin-input"
+                    name="semester"
+                    placeholder="Semester"
+                    required
+                >
+
+                <input
+                    class="admin-input"
+                    name="password"
+                    value="student123"
+                    placeholder="Password"
+                >
+
+                <button class="admin-btn">
+                    ADD STUDENT →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACADEMIC DATA
+===================================================== -->
+
+<section
+    id="admin-data"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Academic control
+    </h2>
+
+
+    <div class="academic-grid">
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="admin-card">
+
+            <h3>
+                Attendance
+            </h3>
+
+            <form
+                class="admin-form admin-form-api"
+                data-url="/api/admin/attendance"
+            >
+
+                <select
+                    class="admin-select"
+                    name="student_id"
+                    required
+                >
+
+                    {% for s in students %}
+
+                    <option value="{{ s.id }}">
+                        {{ s.student_id }} — {{ s.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <input
+                    class="admin-input"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="attended"
+                    type="number"
+                    min="0"
+                    placeholder="Classes attended"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="total"
+                    type="number"
+                    min="0"
+                    placeholder="Total classes"
+                    required
+                >
+
+
+                <button class="admin-btn">
+                    SAVE ATTENDANCE
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- MARKS -->
+
+        <div class="admin-card">
+
+            <h3>
+                Marks
+            </h3>
+
+            <form
+                class="admin-form admin-form-api"
+                data-url="/api/admin/marks"
+            >
+
+                <select
+                    class="admin-select"
+                    name="student_id"
+                    required
+                >
+
+                    {% for s in students %}
+
+                    <option value="{{ s.id }}">
+                        {{ s.student_id }} — {{ s.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <input
+                    class="admin-input"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="internal"
+                    type="number"
+                    placeholder="Internal"
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="assignment"
+                    type="number"
+                    placeholder="Assignment"
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="exam"
+                    type="number"
+                    placeholder="Exam"
+                >
+
+
+                <button class="admin-btn">
+                    SAVE MARKS
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ASSIGNMENT -->
+
+        <div class="admin-card">
+
+            <h3>
+                Assignment
+            </h3>
+
+            <form
+                class="admin-form admin-form-api"
+                data-url="/api/admin/assignment"
+            >
+
+                <select
+                    class="admin-select"
+                    name="student_id"
+                    required
+                >
+
+                    {% for s in students %}
+
+                    <option value="{{ s.id }}">
+                        {{ s.student_id }} — {{ s.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <input
+                    class="admin-input"
+                    name="title"
+                    placeholder="Assignment title"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="due_date"
+                    type="date"
+                    required
+                >
+
+
+                <button class="admin-btn">
+                    CREATE ASSIGNMENT
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- FEES -->
+
+        <div class="admin-card">
+
+            <h3>
+                Fee management
+            </h3>
+
+            <form
+                class="admin-form admin-form-api"
+                data-url="/api/admin/fee"
+            >
+
+                <select
+                    class="admin-select"
+                    name="student_id"
+                    required
+                >
+
+                    {% for s in students %}
+
+                    <option value="{{ s.id }}">
+                        {{ s.student_id }} — {{ s.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <input
+                    class="admin-input"
+                    name="semester"
+                    placeholder="Semester"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="amount"
+                    type="number"
+                    min="0"
+                    placeholder="Total amount"
+                    required
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="paid"
+                    type="number"
+                    min="0"
+                    placeholder="Paid amount"
+                >
+
+
+                <input
+                    class="admin-input"
+                    name="due_date"
+                    type="date"
+                >
+
+
+                <button class="admin-btn">
+                    SAVE FEE
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WEBSITE CONTROL
+===================================================== -->
+
+<section
+    id="admin-content"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Website control
+    </h2>
+
+
+    <div class="cms-grid">
+
+
+        <div class="admin-card">
+
+            <h3>
+                Edit homepage
+            </h3>
+
+
+            <form
+                class="admin-form"
+                id="site-settings-form"
+            >
+
+                <input
+                    class="admin-input"
+                    name="site_title"
+                    value="{{ site_title }}"
+                    placeholder="Hero title"
+                    required
+                >
+
+
+                <textarea
+                    class="admin-textarea"
+                    name="site_subtitle"
+                    placeholder="Hero subtitle"
+                    required
+                >{{ site_subtitle }}</textarea>
+
+
+                <select
+                    class="admin-select"
+                    name="font_family"
+                >
+
+                    <option
+                        value="Inter"
+                        {% if font_family == "Inter" %}
+                        selected
+                        {% endif %}
+                    >
+                        Inter
+                    </option>
+
+
+                    <option
+                        value="Segoe UI"
+                        {% if font_family == "Segoe UI" %}
+                        selected
+                        {% endif %}
+                    >
+                        Segoe UI
+                    </option>
+
+
+                    <option
+                        value="Arial"
+                        {% if font_family == "Arial" %}
+                        selected
+                        {% endif %}
+                    >
+                        Arial
+                    </option>
+
+
+                    <option
+                        value="Georgia"
+                        {% if font_family == "Georgia" %}
+                        selected
+                        {% endif %}
+                    >
+                        Georgia
+                    </option>
+
+
+                    <option
+                        value="Courier New"
+                        {% if font_family == "Courier New" %}
+                        selected
+                        {% endif %}
+                    >
+                        Courier New
+                    </option>
+
+
+                    <option
+                        value="Times New Roman"
+                        {% if font_family == "Times New Roman" %}
+                        selected
+                        {% endif %}
+                    >
+                        Times New Roman
+                    </option>
+
+                </select>
+
+
+                <button class="admin-btn">
+                    SAVE WEBSITE SETTINGS
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="cms-preview">
+
+            <img
+                src="{{ hero_image }}"
+                alt="Current hero"
+            >
+
+            <div class="cms-preview-overlay">
+
+                <div class="cms-preview-text">
+
+                    <small>
+                        LIVE PREVIEW
+                    </small>
+
+                    <h3>
+                        {{ site_title }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <h3>
+            Hero background image
+        </h3>
+
+
+        <form
+            class="admin-form"
+            id="hero-upload-form"
+            enctype="multipart/form-data"
+        >
+
+            <input
+                class="admin-input"
+                type="file"
+                name="image"
+                accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                required
+            >
+
+
+            <button class="admin-btn">
+                CHANGE HERO IMAGE
+            </button>
+
+        </form>
+
+
+        {% if hero_is_uploaded %}
+
+        <br>
+
+        <button
+            class="admin-btn danger"
+            id="delete-hero"
+        >
+            REMOVE HERO IMAGE
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEDIA
+===================================================== -->
+
+<section
+    id="admin-media"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Photos & media
+    </h2>
+
+
+    <div class="admin-card">
+
+        <h3>
+            Add website photo
+        </h3>
+
+
+        <form
+            class="admin-form"
+            id="media-upload-form"
+            enctype="multipart/form-data"
+        >
+
+            <input
+                class="admin-input"
+                type="text"
+                name="title"
+                placeholder="Photo title"
+                required
+            >
+
+
+            <input
+                class="admin-input"
+                type="file"
+                name="image"
+                accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                required
+            >
+
+
+            <button class="admin-btn">
+                UPLOAD PHOTO
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="media-grid">
+
+
+        {% for item in media %}
+
+        <div class="media-card">
+
+            <img
+                src="{{ item.url }}"
+                alt="{{ item.title }}"
+            >
+
+            <div class="media-info">
+
+                <div class="media-name">
+                    {{ item.title }}
+                </div>
+
+
+                <div class="media-actions">
+
+                    <button
+                        class="admin-btn danger small delete-media"
+                        data-id="{{ item.id }}"
+                    >
+                        DELETE
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+
+        <div class="admin-card">
+
+            <div class="admin-empty">
+                No website photos uploaded.
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NOTICES
+===================================================== -->
+
+<section
+    id="admin-notices"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Publish notice
+    </h2>
+
+
+    <div class="notice-wrap">
+
+        <div class="admin-card">
+
+            <h3>
+                Campus announcement
+            </h3>
+
+
+            <form
+                class="admin-form admin-form-api"
+                data-url="/api/admin/notice"
+            >
+
+                <select
+                    class="admin-select"
+                    name="student_id"
+                >
+
+                    <option value="">
+                        All students
+                    </option>
+
+
+                    {% for s in students %}
+
+                    <option value="{{ s.id }}">
+                        {{ s.student_id }} — {{ s.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <input
+                    class="admin-input"
+                    name="title"
+                    placeholder="Notice title"
+                    required
+                >
+
+
+                <textarea
+                    class="admin-textarea"
+                    name="message"
+                    placeholder="Write your announcement..."
+                    required
+                ></textarea>
+
+
+                <button class="admin-btn">
+                    PUBLISH NOTICE →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LEAVE APPROVAL
+===================================================== -->
+
+<section
+    id="admin-leaves"
+    class="admin-view"
+>
+
+    <h2 class="admin-title">
+        Leave approval
+    </h2>
+
+
+    {% for l in leaves %}
+
+
+    <div class="leave-card">
+
+
+        <div class="leave-info">
+
+            <b>
+
+                {{ l.name }}
+
+                ·
+
+                {{ l.student_id }}
+
+            </b>
+
+
+            <p>
+
+                {{ l.from_date }}
+
+                →
+
+                {{ l.to_date }}
+
+                <br>
+
+                {{ l.reason }}
+
+            </p>
+
+        </div>
+
+
+        <span class="leave-status">
+
+            {{ l.status }}
+
+        </span>
+
+
+        {% if l.status == "Pending" %}
+
+
+        <div class="leave-actions">
+
+
+            <button
+                class="admin-btn leave-btn"
+                data-id="{{ l.id }}"
+                data-status="Approved"
+            >
+                APPROVE
+            </button>
+
+
+            <button
+                class="admin-btn danger leave-btn"
+                data-id="{{ l.id }}"
+                data-status="Rejected"
+            >
+                REJECT
+            </button>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="admin-card">
+
+        <div class="admin-empty">
+            No leave requests currently available.
+        </div>
+
+    </div>
+
+
+    {% endfor %}
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<div
+    id="admin-toast"
+    class="admin-toast"
+></div>
+
+
+<script>
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message) {
+
+    const box =
+        document.getElementById(
+            "admin-toast"
+        );
+
+    box.innerText =
+        message;
+
+    box.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        function() {
+
+            box.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".admin-nav button"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const target =
+                        this.dataset.target;
+
+
+                    document
+                        .querySelectorAll(
+                            ".admin-nav button"
+                        )
+                        .forEach(
+                            function(btn) {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    document
+                        .querySelectorAll(
+                            ".admin-view"
+                        )
+                        .forEach(
+                            function(view) {
+
+                                view.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    const selected =
+                        document.getElementById(
+                            target
+                        );
+
+
+                    if (selected) {
+
+                        selected.classList.add(
+                            "active"
+                        );
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   GENERIC API FORMS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".admin-form-api"
+    )
+    .forEach(
+        function(form) {
+
+            form.addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const button =
+                        this.querySelector(
+                            "button"
+                        );
+
+
+                    const original =
+                        button.innerText;
+
+
+                    button.disabled =
+                        true;
+
+                    button.innerText =
+                        "SAVING...";
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                this.dataset.url,
+                                {
+                                    method:
+                                        "POST",
+
+                                    body:
+                                        new FormData(
+                                            this
+                                        )
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.ok
+                        ) {
+
+                            throw new Error(
+                                data.message ||
+                                "Request failed"
+                            );
+
+                        }
+
+
+                        button.innerText =
+                            "✓ SAVED";
+
+
+                        toast(
+                            data.message ||
+                            "Saved successfully."
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.reload();
+
+                            },
+                            700
+                        );
+
+
+                    }
+                    catch(error) {
+
+                        console.error(
+                            error
+                        );
+
+
+                        button.disabled =
+                            false;
+
+                        button.innerText =
+                            original;
+
+
+                        toast(
+                            error.message ||
+                            "Unable to save."
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   ADD STUDENT
+========================================================= */
+
+const newStudent =
+    document.getElementById(
+        "new-student"
+    );
+
+
+if (newStudent) {
+
+    newStudent.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const button =
+                this.querySelector(
+                    "button"
+                );
+
+
+            button.disabled =
+                true;
+
+            button.innerText =
+                "ADDING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/student",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                new FormData(
+                                    this
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to add student"
+                    );
+
+                }
+
+
+                button.innerText =
+                    "✓ ADDED";
+
+
+                toast(
+                    data.message ||
+                    "Student added successfully."
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.reload();
+
+                    },
+                    700
+                );
+
+
+            }
+            catch(error) {
+
+                button.disabled =
+                    false;
+
+                button.innerText =
+                    "ADD STUDENT →";
+
+
+                toast(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DELETE STUDENT
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".delete-student"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    const id =
+                        this.dataset.id;
+
+
+                    if (
+                        !confirm(
+                            "Delete this student and related account?"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    this.disabled =
+                        true;
+
+                    this.innerText =
+                        "DELETING...";
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/api/admin/student/" +
+                                id,
+                                {
+                                    method:
+                                        "DELETE"
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.ok
+                        ) {
+
+                            throw new Error(
+                                data.message ||
+                                "Delete failed"
+                            );
+
+                        }
+
+
+                        toast(
+                            "Student deleted."
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.reload();
+
+                            },
+                            600
+                        );
+
+
+                    }
+                    catch(error) {
+
+                        this.disabled =
+                            false;
+
+                        this.innerText =
+                            "DELETE";
+
+
+                        toast(
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   WEBSITE SETTINGS
+========================================================= */
+
+const siteSettings =
+    document.getElementById(
+        "site-settings-form"
+    );
+
+
+if (siteSettings) {
+
+    siteSettings.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const button =
+                this.querySelector(
+                    "button"
+                );
+
+
+            button.disabled =
+                true;
+
+            button.innerText =
+                "SAVING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/site-settings",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                new FormData(
+                                    this
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Settings update failed"
+                    );
+
+                }
+
+
+                toast(
+                    "Website settings updated."
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.reload();
+
+                    },
+                    700
+                );
+
+
+            }
+            catch(error) {
+
+                button.disabled =
+                    false;
+
+                button.innerText =
+                    "SAVE WEBSITE SETTINGS";
+
+
+                toast(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HERO UPLOAD
+========================================================= */
+
+const heroUpload =
+    document.getElementById(
+        "hero-upload-form"
+    );
+
+
+if (heroUpload) {
+
+    heroUpload.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const button =
+                this.querySelector(
+                    "button"
+                );
+
+
+            button.disabled =
+                true;
+
+            button.innerText =
+                "UPLOADING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/hero",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                new FormData(
+                                    this
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Upload failed"
+                    );
+
+                }
+
+
+                toast(
+                    "Hero image updated."
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.reload();
+
+                    },
+                    700
+                );
+
+
+            }
+            catch(error) {
+
+                button.disabled =
+                    false;
+
+                button.innerText =
+                    "CHANGE HERO IMAGE";
+
+
+                toast(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DELETE HERO
+========================================================= */
+
+const deleteHero =
+    document.getElementById(
+        "delete-hero"
+    );
+
+
+if (deleteHero) {
+
+    deleteHero.addEventListener(
+        "click",
+        async function() {
+
+            if (
+                !confirm(
+                    "Remove the current hero image?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            this.disabled =
+                true;
+
+            this.innerText =
+                "REMOVING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/hero",
+                        {
+                            method:
+                                "DELETE"
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Delete failed"
+                    );
+
+                }
+
+
+                window.location.reload();
+
+
+            }
+            catch(error) {
+
+                this.disabled =
+                    false;
+
+                this.innerText =
+                    "REMOVE HERO IMAGE";
+
+
+                toast(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MEDIA UPLOAD
+========================================================= */
+
+const mediaUpload =
+    document.getElementById(
+        "media-upload-form"
+    );
+
+
+if (mediaUpload) {
+
+    mediaUpload.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const button =
+                this.querySelector(
+                    "button"
+                );
+
+
+            button.disabled =
+                true;
+
+            button.innerText =
+                "UPLOADING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/media",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                new FormData(
+                                    this
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Upload failed"
+                    );
+
+                }
+
+
+                toast(
+                    "Photo uploaded."
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.reload();
+
+                    },
+                    700
+                );
+
+
+            }
+            catch(error) {
+
+                button.disabled =
+                    false;
+
+                button.innerText =
+                    "UPLOAD PHOTO";
+
+
+                toast(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DELETE MEDIA
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".delete-media"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    if (
+                        !confirm(
+                            "Delete this photo permanently?"
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const id =
+                        this.dataset.id;
+
+
+                    this.disabled =
+                        true;
+
+                    this.innerText =
+                        "DELETING...";
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/api/admin/media/" +
+                                id,
+                                {
+                                    method:
+                                        "DELETE"
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.ok
+                        ) {
+
+                            throw new Error(
+                                data.message ||
+                                "Delete failed"
+                            );
+
+                        }
+
+
+                        toast(
+                            "Photo deleted."
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.reload();
+
+                            },
+                            600
+                        );
+
+
+                    }
+                    catch(error) {
+
+                        this.disabled =
+                            false;
+
+                        this.innerText =
+                            "DELETE";
+
+
+                        toast(
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LEAVE APPROVAL
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".leave-btn"
+    )
+    .forEach(
+        function(button) {
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    const id =
+                        this.dataset.id;
+
+
+                    const status =
+                        this.dataset.status;
+
+
+                    this.disabled =
+                        true;
+
+                    this.innerText =
+                        "UPDATING...";
+
+
+                    try {
+
+                        const form =
+                            new FormData();
+
+
+                        form.append(
+                            "status",
+                            status
+                        );
+
+
+                        const response =
+                            await fetch(
+                                "/api/admin/leave/" +
+                                id,
+                                {
+                                    method:
+                                        "POST",
+
+                                    body:
+                                        form
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.ok
+                        ) {
+
+                            throw new Error(
+                                data.message ||
+                                "Leave update failed"
+                            );
+
+                        }
+
+
+                        toast(
+                            data.message ||
+                            "Leave status updated."
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.reload();
+
+                            },
+                            600
+                        );
+
+
+                    }
+                    catch(error) {
+
+                        this.disabled =
+                            false;
+
+
+                        this.innerText =
+                            status === "Approved"
+                                ? "APPROVE"
+                                : "REJECT";
+
+
+                        toast(
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   HASH NAVIGATION
+========================================================= */
+
+const hash =
+    window.location.hash.replace(
+        "#",
+        ""
+    );
+
+
+if (hash) {
+
+    const nav =
+        document.querySelector(
+            `.admin-nav button[data-target="${hash}"]`
+        );
+
+
+    if (nav) {
+
+        nav.click();
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

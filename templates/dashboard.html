@@ -1,0 +1,3114 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Student Dashboard{% endblock %}
+
+{% block body %}
+
+<style>
+
+/* =========================================================
+   KJC STUDENT DASHBOARD
+   PREMIUM WHITE / BLACK EDITION
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f5f7;
+    color: #111;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   APP SHELL
+========================================================= */
+
+.kjc-app {
+    min-height: 100vh;
+
+    display: flex;
+
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(0,0,0,.035),
+            transparent 35%
+        ),
+        #f4f5f7;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.kjc-sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 255px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    border-right:
+        1px solid rgba(0,0,0,.08);
+
+    box-shadow:
+        10px 0 35px rgba(0,0,0,.035);
+
+    z-index: 100;
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.kjc-brand {
+
+    padding:
+        4px 10px 30px;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.08);
+}
+
+.kjc-brand-mark {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.kjc-brand-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid #111;
+
+    border-radius: 13px;
+
+    background:
+        #111;
+
+    color: #fff;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.14);
+}
+
+.kjc-brand-name {
+
+    color: #111;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.kjc-brand-sub {
+
+    margin-top: 4px;
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.kjc-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin-top: 28px;
+}
+
+.kjc-nav button {
+
+    width: 100%;
+
+    height: 47px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 10px;
+
+    background:
+        transparent;
+
+    color:
+        rgba(0,0,0,.48);
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: .5px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+}
+
+.kjc-nav button:hover {
+
+    color: #111;
+
+    background:
+        rgba(0,0,0,.045);
+
+    transform:
+        translateX(3px);
+}
+
+.kjc-nav button.active {
+
+    color: #111;
+
+    background:
+        rgba(0,0,0,.07);
+
+    border-color:
+        rgba(0,0,0,.08);
+
+    box-shadow:
+        inset 3px 0 0 #111;
+}
+
+.kjc-nav-icon {
+
+    width: 20px;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+.kjc-nav button.active .kjc-nav-icon {
+
+    color: #111;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.kjc-sidebar-footer {
+
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(0,0,0,.08);
+}
+
+.kjc-logout {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        12px 13px;
+
+    border-radius: 9px;
+
+    color:
+        rgba(0,0,0,.45);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    transition:
+        .25s ease;
+}
+
+.kjc-logout:hover {
+
+    color: #111;
+
+    background:
+        rgba(0,0,0,.05);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.kjc-main {
+
+    margin-left: 255px;
+
+    width:
+        calc(100% - 255px);
+
+    min-height: 100vh;
+
+    padding:
+        32px 42px 60px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.kjc-header {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+    padding-bottom: 24px;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.08);
+}
+
+.kjc-header-label {
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.kjc-header h1 {
+
+    margin:
+        8px 0 0;
+
+    color: #111;
+
+    font-size:
+        clamp(25px, 3vw, 36px);
+
+    letter-spacing:
+        -1.5px;
+}
+
+.kjc-header h1 span {
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-weight: 300;
+}
+
+.kjc-student-pill {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid rgba(0,0,0,.09);
+
+    border-radius: 30px;
+
+    background:
+        #fff;
+
+    color:
+        rgba(0,0,0,.65);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.04);
+}
+
+.kjc-status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    box-shadow:
+        0 0 12px rgba(0,0,0,.25);
+
+    animation:
+        statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,100% {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   VIEWS
+========================================================= */
+
+.kjc-view {
+
+    display: none;
+
+    animation:
+        viewIn .45s ease both;
+}
+
+.kjc-view.active {
+    display: block;
+}
+
+@keyframes viewIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.kjc-view-title {
+
+    margin:
+        0 0 22px;
+
+    color: #111;
+
+    font-size: 27px;
+
+    letter-spacing:
+        -1px;
+}
+
+
+/* =========================================================
+   PREMIUM HERO BANNER
+========================================================= */
+
+.kjc-banner {
+
+    position: relative;
+
+    min-height: 285px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        40px;
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid rgba(0,0,0,.08);
+
+    border-radius: 20px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.09);
+}
+
+
+/* =========================================================
+   SLIDESHOW
+========================================================= */
+
+.kjc-slideshow {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+.kjc-slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+
+    transform:
+        scale(1.08);
+
+    filter:
+        grayscale(20%)
+        contrast(105%);
+
+    transition:
+        opacity 1.2s ease,
+        transform 6s ease;
+}
+
+.kjc-slide.active {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+}
+
+
+/* =========================================================
+   WHITE IMAGE OVERLAY
+========================================================= */
+
+.kjc-slide-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.98) 0%,
+            rgba(255,255,255,.92) 30%,
+            rgba(255,255,255,.58) 55%,
+            rgba(255,255,255,.08) 100%
+        );
+}
+
+
+/* =========================================================
+   BANNER CONTENT
+========================================================= */
+
+.kjc-banner-content {
+
+    position: relative;
+
+    z-index: 3;
+}
+
+.kjc-banner-label {
+
+    color:
+        rgba(0,0,0,.45);
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    font-weight: 700;
+}
+
+.kjc-banner h2 {
+
+    margin:
+        10px 0 8px;
+
+    color: #111;
+
+    font-size:
+        clamp(27px, 4vw, 43px);
+
+    font-weight: 800;
+
+    letter-spacing:
+        -2px;
+}
+
+.kjc-banner p {
+
+    margin: 0;
+
+    color:
+        rgba(0,0,0,.5);
+
+    font-size: 12px;
+}
+
+.kjc-banner-line {
+
+    width: 65px;
+
+    height: 3px;
+
+    margin-top: 22px;
+
+    background: #111;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   SLIDE DOTS
+========================================================= */
+
+.kjc-slide-dots {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 40px;
+    bottom: 22px;
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.kjc-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,.2);
+
+    transition:
+        .3s ease;
+}
+
+.kjc-dot.active {
+
+    width: 24px;
+
+    border-radius: 10px;
+
+    background: #111;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.kjc-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.kjc-stat {
+
+    position: relative;
+
+    padding: 22px;
+
+    min-height: 130px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0,0,0,.07);
+
+    border-radius: 15px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.045);
+
+    transition:
+        transform .3s,
+        background .3s,
+        border .3s,
+        box-shadow .3s;
+}
+
+.kjc-stat::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -30px;
+    bottom: -50px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(0,0,0,.045);
+}
+
+.kjc-stat:hover {
+
+    transform:
+        translateY(-5px);
+
+    background:
+        #fff;
+
+    border-color:
+        rgba(0,0,0,.16);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.08);
+}
+
+.kjc-stat small {
+
+    display: block;
+
+    color:
+        rgba(0,0,0,.38);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.kjc-stat strong {
+
+    display: block;
+
+    margin-top: 13px;
+
+    color: #111;
+
+    font-size: 31px;
+
+    letter-spacing:
+        -1px;
+}
+
+.kjc-stat span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(0,0,0,.38);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.kjc-columns {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+.kjc-three {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.kjc-card {
+
+    position: relative;
+
+    padding: 25px;
+
+    border:
+        1px solid rgba(0,0,0,.07);
+
+    border-radius: 15px;
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.055);
+
+    transition:
+        transform .3s,
+        border .3s,
+        background .3s,
+        box-shadow .3s;
+}
+
+.kjc-card:hover {
+
+    border-color:
+        rgba(0,0,0,.13);
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.08);
+}
+
+.kjc-card h3 {
+
+    margin:
+        0 0 20px;
+
+    color: #111;
+
+    font-size: 15px;
+
+    letter-spacing:
+        -.2px;
+}
+
+.kjc-card-subtitle {
+
+    margin-top: -14px;
+
+    margin-bottom: 20px;
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.kjc-notification {
+
+    padding:
+        14px 0;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.07);
+}
+
+.kjc-notification:last-child {
+    border-bottom: 0;
+}
+
+.kjc-notification b {
+
+    color: #111;
+
+    font-size: 11px;
+}
+
+.kjc-notification p {
+
+    margin:
+        5px 0 0;
+
+    color:
+        rgba(0,0,0,.45);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.kjc-video {
+
+    position: relative;
+
+    overflow: hidden;
+
+    aspect-ratio: 16 / 9;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.12);
+}
+
+.kjc-video iframe {
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.kjc-table-wrap {
+
+    overflow-x: auto;
+}
+
+.kjc-table {
+
+    width: 100%;
+
+    border-collapse:
+        collapse;
+
+    font-size: 11px;
+}
+
+.kjc-table th {
+
+    padding:
+        12px 10px;
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.09);
+}
+
+.kjc-table td {
+
+    padding:
+        14px 10px;
+
+    color:
+        rgba(0,0,0,.58);
+
+    border-bottom:
+        1px solid rgba(0,0,0,.055);
+}
+
+.kjc-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.kjc-table td b {
+    color: #111;
+}
+
+
+/* =========================================================
+   ASSIGNMENTS
+========================================================= */
+
+.kjc-assignment {
+
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.kjc-assignment small {
+
+    color:
+        rgba(0,0,0,.4);
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+.kjc-assignment h3 {
+
+    margin:
+        12px 0 7px;
+
+    color: #111;
+
+    font-size: 17px;
+}
+
+.kjc-assignment p {
+
+    color:
+        rgba(0,0,0,.45);
+
+    font-size: 10px;
+}
+
+.kjc-assignment .kjc-btn {
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.kjc-btn {
+
+    min-height: 43px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid #111;
+
+    border-radius: 9px;
+
+    background:
+        #111;
+
+    color:
+        #fff;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.12);
+}
+
+.kjc-btn:hover {
+
+    background:
+        #fff;
+
+    color:
+        #111;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+}
+
+.kjc-btn.secondary {
+
+    background:
+        #fff;
+
+    color:
+        rgba(0,0,0,.65);
+
+    border-color:
+        rgba(0,0,0,.13);
+}
+
+.kjc-btn.secondary:hover {
+
+    background:
+        rgba(0,0,0,.05);
+
+    color: #111;
+}
+
+.kjc-btn:disabled {
+
+    opacity: .45;
+
+    cursor:
+        not-allowed;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.kjc-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.kjc-input {
+
+    width: 100%;
+
+    min-height: 45px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid rgba(0,0,0,.1);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background:
+        #fafafa;
+
+    color: #111;
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+.kjc-textarea {
+
+    min-height: 100px;
+
+    padding:
+        13px;
+
+    resize:
+        vertical;
+}
+
+.kjc-input:focus {
+
+    border-color:
+        rgba(0,0,0,.4);
+
+    background:
+        #fff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,0,0,.04);
+}
+
+.kjc-input::placeholder {
+
+    color:
+        rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   SERVICE ITEMS
+========================================================= */
+
+.kjc-service-item {
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.07);
+}
+
+.kjc-service-item:last-child {
+    border-bottom: 0;
+}
+
+.kjc-service-item b {
+
+    color: #111;
+
+    font-size: 11px;
+}
+
+.kjc-service-item p {
+
+    margin:
+        5px 0 0;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.kjc-profile-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom:
+        1px solid rgba(0,0,0,.08);
+}
+
+.kjc-avatar {
+
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid #111;
+
+    border-radius: 18px;
+
+    background:
+        #111;
+
+    color: #fff;
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+}
+
+.kjc-profile-top h2 {
+
+    margin:
+        0 0 7px;
+
+    color: #111;
+
+    font-size: 21px;
+}
+
+.kjc-profile-top p {
+
+    margin:
+        3px 0;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 10px;
+}
+
+.kjc-profile-form {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 14px;
+}
+
+.kjc-profile-form .full {
+    grid-column:
+        1 / -1;
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+.kjc-mobile-top {
+    display: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE 1100
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .kjc-stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .kjc-three {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 850
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .kjc-sidebar {
+
+        width: 75px;
+
+        padding:
+            20px 10px;
+    }
+
+    .kjc-brand-name,
+    .kjc-brand-sub,
+    .kjc-nav-text,
+    .kjc-logout-text {
+
+        display: none;
+    }
+
+    .kjc-brand {
+
+        padding:
+            0 0 20px;
+    }
+
+    .kjc-brand-mark {
+
+        justify-content: center;
+    }
+
+    .kjc-nav button {
+
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .kjc-nav-icon {
+
+        width: auto;
+    }
+
+    .kjc-logout {
+
+        justify-content: center;
+    }
+
+    .kjc-main {
+
+        margin-left: 75px;
+
+        width:
+            calc(100% - 75px);
+
+        padding:
+            25px;
+    }
+
+    .kjc-columns {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 600
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .kjc-sidebar {
+
+        position: fixed;
+
+        top: auto;
+        bottom: 0;
+
+        width: 100%;
+        height: 68px;
+
+        flex-direction: row;
+
+        padding:
+            8px;
+
+        border-right: 0;
+
+        border-top:
+            1px solid rgba(0,0,0,.1);
+
+        box-shadow:
+            0 -10px 35px rgba(0,0,0,.06);
+    }
+
+    .kjc-brand,
+    .kjc-sidebar-footer {
+
+        display: none;
+    }
+
+    .kjc-nav {
+
+        width: 100%;
+
+        margin: 0;
+
+        flex-direction: row;
+
+        justify-content: space-around;
+    }
+
+    .kjc-nav button {
+
+        height: 50px;
+
+        flex: 1;
+    }
+
+    .kjc-nav-icon {
+
+        font-size: 16px;
+    }
+
+    .kjc-nav button:nth-child(n+6) {
+        display: none;
+    }
+
+    .kjc-main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            20px 15px 95px;
+    }
+
+    .kjc-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+
+    .kjc-student-pill {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .kjc-banner {
+
+        min-height: 260px;
+
+        padding:
+            28px 24px;
+    }
+
+    .kjc-slide-overlay {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,.97),
+                rgba(255,255,255,.58)
+            );
+    }
+
+    .kjc-banner h2 {
+
+        font-size: 31px;
+    }
+
+    .kjc-banner p {
+
+        font-size: 11px;
+    }
+
+    .kjc-slide-dots {
+
+        left: 24px;
+
+        bottom: 18px;
+    }
+
+    .kjc-stats {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 9px;
+    }
+
+    .kjc-stat {
+
+        padding:
+            16px;
+
+        min-height:
+            115px;
+    }
+
+    .kjc-stat strong {
+
+        font-size:
+            24px;
+    }
+
+    .kjc-three {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .kjc-profile-form {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .kjc-profile-form .full {
+
+        grid-column:
+            auto;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE 390
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .kjc-stats {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .kjc-banner h2 {
+
+        font-size: 27px;
+    }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+
+    background:
+        #f4f5f7;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(0,0,0,.18);
+
+    border-radius:
+        10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(0,0,0,.3);
+}
+
+</style>
+
+
+<div class="kjc-app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="kjc-sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="kjc-brand">
+
+            <div class="kjc-brand-mark">
+
+                <div class="kjc-brand-icon">
+                    KJ
+                </div>
+
+                <div>
+
+                    <div class="kjc-brand-name">
+                        KJ STUDENT
+                    </div>
+
+                    <div class="kjc-brand-sub">
+                        DIGITAL CAMPUS
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="kjc-nav">
+
+            <button
+                class="active"
+                data-target="overview"
+            >
+
+                <span class="kjc-nav-icon">
+                    ◈
+                </span>
+
+                <span class="kjc-nav-text">
+                    Overview
+                </span>
+
+            </button>
+
+
+            <button data-target="academics">
+
+                <span class="kjc-nav-icon">
+                    ◫
+                </span>
+
+                <span class="kjc-nav-text">
+                    Academics
+                </span>
+
+            </button>
+
+
+            <button data-target="assignments">
+
+                <span class="kjc-nav-icon">
+                    ✓
+                </span>
+
+                <span class="kjc-nav-text">
+                    Assignments
+                </span>
+
+            </button>
+
+
+            <button data-target="timetable">
+
+                <span class="kjc-nav-icon">
+                    ◷
+                </span>
+
+                <span class="kjc-nav-text">
+                    Timetable
+                </span>
+
+            </button>
+
+
+            <button data-target="services">
+
+                <span class="kjc-nav-icon">
+                    ◇
+                </span>
+
+                <span class="kjc-nav-text">
+                    Services
+                </span>
+
+            </button>
+
+
+            <button data-target="profile">
+
+                <span class="kjc-nav-icon">
+                    ◎
+                </span>
+
+                <span class="kjc-nav-text">
+                    Profile
+                </span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             LOGOUT
+        ================================================== -->
+
+        <div class="kjc-sidebar-footer">
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="kjc-logout"
+            >
+
+                <span>
+                    ↪
+                </span>
+
+                <span class="kjc-logout-text">
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="kjc-main">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="kjc-header">
+
+            <div>
+
+                <div class="kjc-header-label">
+                    KJ DIGITAL CAMPUS
+                </div>
+
+                <h1>
+
+                    Good day,
+
+                    <span>
+                        {{ s.name.split()[0] }}.
+                    </span>
+
+                </h1>
+
+            </div>
+
+
+            <div class="kjc-student-pill">
+
+                <span class="kjc-status-dot"></span>
+
+                {{ s.student_id }}
+
+                ·
+
+                {{ s.course }}
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+
+        <section
+            id="overview"
+            class="kjc-view active"
+        >
+
+
+            <!-- =================================================
+                 HERO SLIDESHOW
+            ================================================== -->
+
+            <div class="kjc-banner">
+
+
+                <div class="kjc-slideshow">
+
+
+                    <img
+                        src="{{ url_for('static', filename='img/campus.jpg') }}"
+                        class="kjc-slide active"
+                        alt="KJC Campus"
+                    >
+
+
+                    <img
+                        src="{{ url_for('static', filename='img/campus2.jpg') }}"
+                        class="kjc-slide"
+                        alt="KJC Campus"
+                    >
+
+
+                    <img
+                        src="{{ url_for('static', filename='img/campus3.jpg') }}"
+                        class="kjc-slide"
+                        alt="KJC Campus"
+                    >
+
+
+                    <img
+                        src="{{ url_for('static', filename='img/campus4.jpg') }}"
+                        class="kjc-slide"
+                        alt="KJC Campus"
+                    >
+
+
+                    <img
+                        src="{{ url_for('static', filename='img/campus5.jpg') }}"
+                        class="kjc-slide"
+                        alt="KJC Campus"
+                    >
+
+                </div>
+
+
+                <!-- WHITE IMAGE OVERLAY -->
+
+                <div class="kjc-slide-overlay"></div>
+
+
+                <!-- CONTENT -->
+
+                <div class="kjc-banner-content">
+
+                    <div class="kjc-banner-label">
+                        KJC DIGITAL CAMPUS
+                    </div>
+
+                    <h2>
+                        Learn. Lead. Launch.
+                    </h2>
+
+                    <p>
+                        Your academic command center.
+                    </p>
+
+                    <div class="kjc-banner-line"></div>
+
+                </div>
+
+
+                <!-- DOTS -->
+
+                <div class="kjc-slide-dots">
+
+                    <span class="kjc-dot active"></span>
+
+                    <span class="kjc-dot"></span>
+
+                    <span class="kjc-dot"></span>
+
+                    <span class="kjc-dot"></span>
+
+                    <span class="kjc-dot"></span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATS
+            ================================================== -->
+
+            <div class="kjc-stats">
+
+
+                <div class="kjc-stat">
+
+                    <small>
+                        ATTENDANCE
+                    </small>
+
+                    <strong>
+                        {{ att_pct }}%
+                    </strong>
+
+                    <span>
+                        Overall
+                    </span>
+
+                </div>
+
+
+                <div class="kjc-stat">
+
+                    <small>
+                        AVERAGE SCORE
+                    </small>
+
+                    <strong>
+                        {{ avg }}
+                    </strong>
+
+                    <span>
+                        Subjects
+                    </span>
+
+                </div>
+
+
+                <div class="kjc-stat">
+
+                    <small>
+                        PENDING WORK
+                    </small>
+
+                    <strong>
+                        {{ pending }}
+                    </strong>
+
+                    <span>
+                        Assignments
+                    </span>
+
+                </div>
+
+
+                <div class="kjc-stat">
+
+                    <small>
+                        FEE BALANCE
+                    </small>
+
+                    <strong>
+                        ₹{{ '%.0f'|format(balance) }}
+                    </strong>
+
+                    <span>
+                        Outstanding
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NOTIFICATIONS + VIDEO
+            ================================================== -->
+
+            <div class="kjc-columns">
+
+
+                <!-- NOTIFICATIONS -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Notifications
+                    </h3>
+
+
+                    {% for n in notifications %}
+
+                    <article class="kjc-notification">
+
+                        <b>
+                            {{ n.title }}
+                        </b>
+
+                        <p>
+                            {{ n.message }}
+                        </p>
+
+                    </article>
+
+                    {% else %}
+
+                    <p class="kjc-card-subtitle">
+                        No notifications.
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- CAMPUS VIDEO -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Campus Tour
+                    </h3>
+
+                    <div class="kjc-video">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/bgyGN5DsUCA?rel=0"
+                            allowfullscreen
+                        ></iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACADEMICS
+        ================================================== -->
+
+        <section
+            id="academics"
+            class="kjc-view"
+        >
+
+            <h2 class="kjc-view-title">
+                Performance center
+            </h2>
+
+
+            <div class="kjc-columns">
+
+
+                <!-- ATTENDANCE -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Attendance
+                    </h3>
+
+                    <div class="kjc-table-wrap">
+
+                        <table class="kjc-table">
+
+                            <tr>
+
+                                <th>
+                                    SUBJECT
+                                </th>
+
+                                <th>
+                                    ATTENDED
+                                </th>
+
+                                <th>
+                                    TOTAL
+                                </th>
+
+                                <th>
+                                    %
+                                </th>
+
+                            </tr>
+
+
+                            {% for x in attendance %}
+
+                            <tr>
+
+                                <td>
+                                    {{ x.subject }}
+                                </td>
+
+                                <td>
+                                    {{ x.attended }}
+                                </td>
+
+                                <td>
+                                    {{ x.total }}
+                                </td>
+
+                                <td>
+
+                                    <b>
+                                        {{ x.pct }}%
+                                    </b>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MARKS -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Marks
+                    </h3>
+
+                    <div class="kjc-table-wrap">
+
+                        <table class="kjc-table">
+
+                            <tr>
+
+                                <th>
+                                    SUBJECT
+                                </th>
+
+                                <th>
+                                    INTERNAL
+                                </th>
+
+                                <th>
+                                    ASSIGN
+                                </th>
+
+                                <th>
+                                    EXAM
+                                </th>
+
+                                <th>
+                                    TOTAL
+                                </th>
+
+                            </tr>
+
+
+                            {% for x in marks %}
+
+                            <tr>
+
+                                <td>
+                                    {{ x.subject }}
+                                </td>
+
+                                <td>
+                                    {{ x.internal }}
+                                </td>
+
+                                <td>
+                                    {{ x.assignment }}
+                                </td>
+
+                                <td>
+                                    {{ x.exam }}
+                                </td>
+
+                                <td>
+
+                                    <b>
+                                        {{ x.total }}
+                                    </b>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ASSIGNMENTS
+        ================================================== -->
+
+        <section
+            id="assignments"
+            class="kjc-view"
+        >
+
+            <h2 class="kjc-view-title">
+                Assignments
+            </h2>
+
+
+            <div class="kjc-three">
+
+
+                {% for a in assignments %}
+
+                <div class="kjc-card kjc-assignment">
+
+
+                    <small>
+                        {{ a.subject }}
+                    </small>
+
+
+                    <h3>
+                        {{ a.title }}
+                    </h3>
+
+
+                    <p>
+                        Due {{ a.due_date }}
+                    </p>
+
+
+                    {% if a.status == "Pending" %}
+
+                    <button
+                        class="kjc-btn submit"
+                        data-id="{{ a.id }}"
+                    >
+                        SUBMIT NOW →
+                    </button>
+
+
+                    {% else %}
+
+                    <button
+                        class="kjc-btn secondary"
+                        disabled
+                    >
+                        ✓ {{ a.status }}
+                    </button>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                {% else %}
+
+
+                <div class="kjc-card">
+
+                    <p>
+                        No assignments available.
+                    </p>
+
+                </div>
+
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TIMETABLE
+        ================================================== -->
+
+        <section
+            id="timetable"
+            class="kjc-view"
+        >
+
+            <h2 class="kjc-view-title">
+                Timetable
+            </h2>
+
+
+            <div class="kjc-card">
+
+                <div class="kjc-table-wrap">
+
+                    <table class="kjc-table">
+
+                        <tr>
+
+                            <th>
+                                DAY
+                            </th>
+
+                            <th>
+                                TIME
+                            </th>
+
+                            <th>
+                                SUBJECT
+                            </th>
+
+                            <th>
+                                ROOM
+                            </th>
+
+                        </tr>
+
+
+                        {% for x in timetable %}
+
+                        <tr>
+
+                            <td>
+                                {{ x.day_name }}
+                            </td>
+
+                            <td>
+                                {{ x.period_time }}
+                            </td>
+
+                            <td>
+
+                                <b>
+                                    {{ x.subject }}
+                                </b>
+
+                            </td>
+
+                            <td>
+                                {{ x.room }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICES
+        ================================================== -->
+
+        <section
+            id="services"
+            class="kjc-view"
+        >
+
+            <h2 class="kjc-view-title">
+                Student services
+            </h2>
+
+
+            <div class="kjc-three">
+
+
+                <!-- LEAVE -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Leave request
+                    </h3>
+
+
+                    <form
+                        id="leave"
+                        class="kjc-form"
+                    >
+
+                        <input
+                            class="kjc-input"
+                            name="from_date"
+                            type="date"
+                            required
+                        >
+
+
+                        <input
+                            class="kjc-input"
+                            name="to_date"
+                            type="date"
+                            required
+                        >
+
+
+                        <textarea
+                            class="kjc-input kjc-textarea"
+                            name="reason"
+                            placeholder="Reason"
+                            required
+                        ></textarea>
+
+
+                        <button class="kjc-btn">
+                            REQUEST LEAVE
+                        </button>
+
+                    </form>
+
+
+                    {% for l in leaves %}
+
+                    <div class="kjc-service-item">
+
+                        <b>
+
+                            {{ l.from_date }}
+
+                            →
+
+                            {{ l.to_date }}
+
+                        </b>
+
+                        <p>
+
+                            Status:
+
+                            {{ l.status }}
+
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- FEES -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Fees
+                    </h3>
+
+
+                    {% for f in fees %}
+
+                    <div class="kjc-service-item">
+
+                        <b>
+                            {{ f.semester }}
+                        </b>
+
+                        <p>
+                            ₹{{ '%.0f'|format(f.balance) }}
+                            balance
+                        </p>
+
+                    </div>
+
+
+                    {% else %}
+
+                    <p class="kjc-card-subtitle">
+                        No fee records available.
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- CERTIFICATES -->
+
+                <div class="kjc-card">
+
+                    <h3>
+                        Certificates
+                    </h3>
+
+
+                    {% for c in certificates %}
+
+                    <div class="kjc-service-item">
+
+                        <b>
+                            ✦ {{ c.title }}
+                        </b>
+
+                        <p>
+                            {{ c.certificate_no }}
+                        </p>
+
+                    </div>
+
+
+                    {% else %}
+
+                    <p class="kjc-card-subtitle">
+                        No certificates available.
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================== -->
+
+        <section
+            id="profile"
+            class="kjc-view"
+        >
+
+            <h2 class="kjc-view-title">
+                Profile
+            </h2>
+
+
+            <div class="kjc-card">
+
+
+                <div class="kjc-profile-top">
+
+
+                    <div class="kjc-avatar">
+                        {{ s.name[0] }}
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            {{ s.name }}
+                        </h2>
+
+                        <p>
+
+                            {{ s.email }}
+
+                            ·
+
+                            {{ s.student_id }}
+
+                        </p>
+
+                        <p>
+
+                            {{ s.course }}
+
+                            ·
+
+                            {{ s.semester }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="profile-form"
+                    class="kjc-profile-form"
+                >
+
+
+                    <input
+                        class="kjc-input"
+                        name="phone"
+                        value="{{ s.phone }}"
+                        placeholder="Phone"
+                    >
+
+
+                    <input
+                        class="kjc-input"
+                        name="address"
+                        value="{{ s.address }}"
+                        placeholder="Address"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="kjc-btn full"
+                    >
+                        SAVE PROFILE
+                    </button>
+
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   KJC DASHBOARD NAVIGATION
+========================================================= */
+
+document
+    .querySelectorAll(".kjc-nav button")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const target =
+                    this.dataset.target;
+
+
+                /* Remove active */
+
+                document
+                    .querySelectorAll(".kjc-nav button")
+                    .forEach(function(btn) {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                /* Add active */
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                /* Hide views */
+
+                document
+                    .querySelectorAll(".kjc-view")
+                    .forEach(function(view) {
+
+                        view.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                /* Show selected */
+
+                const view =
+                    document.getElementById(
+                        target
+                    );
+
+                if (view) {
+
+                    view.classList.add(
+                        "active"
+                    );
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   3D CARD HOVER
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".kjc-card, .kjc-stat"
+    )
+    .forEach(function(card) {
+
+
+        card.addEventListener(
+            "mousemove",
+            function(event) {
+
+                if (
+                    window.innerWidth < 900
+                ) {
+                    return;
+                }
+
+
+                const rect =
+                    this.getBoundingClientRect();
+
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+
+                const centerX =
+                    rect.width / 2;
+
+
+                const centerY =
+                    rect.height / 2;
+
+
+                const rotateX =
+                    (
+                        (centerY - y) /
+                        centerY
+                    ) * 1.5;
+
+
+                const rotateY =
+                    (
+                        (x - centerX) /
+                        centerX
+                    ) * 1.5;
+
+
+                this.style.transform =
+                    `
+                    perspective(700px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateY(-3px)
+                    `;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            function() {
+
+                this.style.transform = "";
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   CAMPUS IMAGE SLIDESHOW
+========================================================= */
+
+const slides =
+    document.querySelectorAll(
+        ".kjc-slide"
+    );
+
+const dots =
+    document.querySelectorAll(
+        ".kjc-dot"
+    );
+
+let currentSlide = 0;
+
+
+function showSlide(index) {
+
+
+    slides.forEach(
+        function(slide) {
+
+            slide.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    dots.forEach(
+        function(dot) {
+
+            dot.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    if (slides[index]) {
+
+        slides[index].classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (dots[index]) {
+
+        dots[index].classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+function nextSlide() {
+
+    currentSlide++;
+
+    if (
+        currentSlide >=
+        slides.length
+    ) {
+
+        currentSlide = 0;
+
+    }
+
+    showSlide(
+        currentSlide
+    );
+
+}
+
+
+if (slides.length > 1) {
+
+    setInterval(
+        nextSlide,
+        5000
+    );
+
+}
+
+
+/* =========================================================
+   CLICK SLIDE DOTS
+========================================================= */
+
+dots.forEach(
+    function(dot, index) {
+
+        dot.addEventListener(
+            "click",
+            function() {
+
+                currentSlide = index;
+
+                showSlide(
+                    currentSlide
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ASSIGNMENT SUBMIT
+========================================================= */
+
+document
+    .querySelectorAll(".submit")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const id =
+                    this.dataset.id;
+
+
+                if (
+                    typeof window.submitAssignment
+                    === "function"
+                ) {
+
+                    window.submitAssignment(
+                        id
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   PROFILE FORM
+========================================================= */
+
+const profileForm =
+    document.getElementById(
+        "profile-form"
+    );
+
+
+if (profileForm) {
+
+    profileForm.addEventListener(
+        "submit",
+        function(event) {
+
+            if (
+                typeof window.saveProfile
+                === "function"
+            ) {
+
+                event.preventDefault();
+
+                window.saveProfile(
+                    new FormData(
+                        profileForm
+                    )
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LEAVE FORM
+========================================================= */
+
+const leaveForm =
+    document.getElementById(
+        "leave"
+    );
+
+
+if (leaveForm) {
+
+    leaveForm.addEventListener(
+        "submit",
+        function(event) {
+
+            if (
+                typeof window.requestLeave
+                === "function"
+            ) {
+
+                event.preventDefault();
+
+                window.requestLeave(
+                    new FormData(
+                        leaveForm
+                    )
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE PAGE FROM URL HASH
+========================================================= */
+
+const hash =
+    window.location.hash.replace(
+        "#",
+        ""
+    );
+
+
+if (hash) {
+
+    const nav =
+        document.querySelector(
+            `.kjc-nav button[data-target="${hash}"]`
+        );
+
+
+    if (nav) {
+
+        nav.click();
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

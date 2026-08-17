@@ -1,0 +1,1471 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Student Registration{% endblock %}
+
+{% block body %}
+
+<style>
+/* =========================================================
+   KJC STUDENT PORTAL
+   PREMIUM BLACK & WHITE EDITION
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.kjc-page {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+}
+
+/* =========================================================
+   COLLEGE BACKGROUND VIDEO
+========================================================= */
+
+.kjc-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.kjc-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    filter:
+        grayscale(100%)
+        brightness(35%)
+        contrast(115%);
+
+    transform: scale(1.04);
+
+    animation: cinematicZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes cinematicZoom {
+    from {
+        transform: scale(1.04);
+    }
+
+    to {
+        transform: scale(1.10);
+    }
+}
+
+/* =========================================================
+   CINEMATIC OVERLAY
+========================================================= */
+
+.kjc-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.92) 0%,
+            rgba(0,0,0,.72) 35%,
+            rgba(0,0,0,.58) 65%,
+            rgba(0,0,0,.90) 100%
+        );
+
+    z-index: 1;
+}
+
+/* Bottom cinematic shadow */
+
+.kjc-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.95),
+            transparent 35%,
+            rgba(0,0,0,.15)
+        );
+}
+
+/* =========================================================
+   FILM GRAIN
+========================================================= */
+
+.kjc-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    pointer-events: none;
+
+    opacity: .055;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+/* =========================================================
+   FLOATING WHITE PARTICLES
+========================================================= */
+
+.particle {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    opacity: .35;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.7);
+
+    z-index: 3;
+
+    animation:
+        particleFloat linear infinite;
+}
+
+.particle:nth-child(1) {
+    left: 12%;
+    top: 75%;
+    animation-duration: 10s;
+}
+
+.particle:nth-child(2) {
+    left: 22%;
+    top: 45%;
+    animation-duration: 14s;
+}
+
+.particle:nth-child(3) {
+    left: 78%;
+    top: 25%;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(4) {
+    left: 88%;
+    top: 70%;
+    animation-duration: 16s;
+}
+
+.particle:nth-child(5) {
+    left: 55%;
+    top: 12%;
+    animation-duration: 11s;
+}
+
+.particle:nth-child(6) {
+    left: 42%;
+    top: 85%;
+    animation-duration: 13s;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .4;
+    }
+
+    70% {
+        opacity: .25;
+    }
+
+    100% {
+        transform:
+            translateY(-150px)
+            scale(1.2);
+
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.kjc-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(940px, 94%);
+
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+
+    align-items: center;
+
+    gap: 70px;
+
+    padding: 40px 0;
+
+    perspective: 1500px;
+}
+
+/* =========================================================
+   LEFT BRANDING
+========================================================= */
+
+.kjc-intro {
+    animation: introReveal 1s ease both;
+}
+
+@keyframes introReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.kjc-small-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.kjc-small-title::before {
+    content: "";
+
+    width: 38px;
+    height: 1px;
+
+    background: rgba(255,255,255,.65);
+}
+
+.kjc-intro h1 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+
+    font-weight: 800;
+}
+
+.kjc-intro h1 span {
+    display: block;
+
+    color: rgba(255,255,255,.38);
+
+    font-weight: 300;
+}
+
+.kjc-intro p {
+    max-width: 400px;
+
+    margin: 28px 0 0;
+
+    color: rgba(255,255,255,.62);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+/* =========================================================
+   COLLEGE NAME
+========================================================= */
+
+.kjc-college-name {
+    margin-top: 42px;
+
+    color: rgba(255,255,255,.9);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.kjc-college-location {
+    margin-top: 7px;
+
+    color: rgba(255,255,255,.42);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   REGISTRATION CARD
+========================================================= */
+
+.kjc-card {
+    position: relative;
+
+    padding: 38px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(8,8,8,.78);
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .18s ease-out,
+        box-shadow .4s ease;
+
+    animation:
+        cardReveal 1s .15s ease both;
+}
+
+@keyframes cardReveal {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* Thin animated white border */
+
+.kjc-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -1px;
+
+    border-radius: 24px;
+
+    padding: 1px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    background-size: 300% 300%;
+
+    animation:
+        borderFlow 8s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+
+    mask-composite: exclude;
+
+    pointer-events: none;
+}
+
+@keyframes borderFlow {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.kjc-card-header {
+    text-align: center;
+
+    transform: translateZ(35px);
+}
+
+.kjc-mark {
+
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    color: #fff;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.1);
+
+    animation:
+        markFloat 4s ease-in-out infinite;
+}
+
+@keyframes markFloat {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px)
+            rotateY(10deg);
+    }
+}
+
+.kjc-card-header h2 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 21px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+}
+
+.kjc-card-header small {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: rgba(255,255,255,.42);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+/* =========================================================
+   FORM TITLE
+========================================================= */
+
+.kjc-form-heading {
+
+    margin:
+        30px 0 25px;
+
+    padding-bottom: 20px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.kjc-form-heading h3 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: -.7px;
+}
+
+.kjc-form-heading p {
+
+    margin: 7px 0 0;
+
+    color: rgba(255,255,255,.42);
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.kjc-form {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 17px;
+
+    transform:
+        translateZ(20px);
+}
+
+.kjc-field {
+
+    position: relative;
+}
+
+.kjc-field.full {
+
+    grid-column:
+        1 / -1;
+}
+
+.kjc-field label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: .5px;
+}
+
+.kjc-field input,
+.kjc-field select {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #fff;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        transform .25s ease;
+}
+
+.kjc-field input::placeholder {
+
+    color:
+        rgba(255,255,255,.25);
+}
+
+.kjc-field select {
+
+    cursor: pointer;
+
+    appearance: none;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 50%,
+            #fff 50%
+        ),
+        linear-gradient(
+            135deg,
+            #fff 50%,
+            transparent 50%
+        );
+
+    background-position:
+        calc(100% - 17px) 20px,
+        calc(100% - 12px) 20px;
+
+    background-size:
+        5px 5px;
+
+    background-repeat:
+        no-repeat;
+}
+
+.kjc-field select option {
+
+    background: #111;
+
+    color: #fff;
+}
+
+.kjc-field input:focus,
+.kjc-field select:focus {
+
+    border-color:
+        rgba(255,255,255,.55);
+
+    background:
+        rgba(255,255,255,.07);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.04);
+
+    transform:
+        translateY(-1px);
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.kjc-password {
+
+    position: relative;
+}
+
+.kjc-password input {
+
+    padding-right: 45px;
+}
+
+.kjc-password button {
+
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: 0;
+
+    background: none;
+
+    color:
+        rgba(255,255,255,.4);
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition:
+        color .2s ease;
+}
+
+.kjc-password button:hover {
+
+    color: #fff;
+}
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.kjc-submit {
+
+    grid-column:
+        1 / -1;
+
+    height: 54px;
+
+    margin-top: 4px;
+
+    border:
+        1px solid rgba(255,255,255,.4);
+
+    border-radius: 11px;
+
+    background:
+        #fff;
+
+    color:
+        #000;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease,
+        box-shadow .25s ease;
+}
+
+.kjc-submit:hover {
+
+    background:
+        #000;
+
+    color:
+        #fff;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.65),
+        0 0 0 1px rgba(255,255,255,.3);
+}
+
+.kjc-submit:active {
+
+    transform:
+        translateY(-1px);
+}
+
+/* =========================================================
+   LOGIN LINK
+========================================================= */
+
+.kjc-login {
+
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,.38);
+
+    font-size: 11px;
+}
+
+.kjc-login a {
+
+    margin-left: 5px;
+
+    color:
+        #fff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.45);
+
+    transition:
+        border-color .2s,
+        opacity .2s;
+}
+
+.kjc-login a:hover {
+
+    opacity: .65;
+
+    border-color:
+        transparent;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .kjc-content {
+
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+
+        gap: 30px;
+    }
+
+    .kjc-intro {
+
+        text-align: center;
+    }
+
+    .kjc-small-title {
+
+        justify-content: center;
+    }
+
+    .kjc-intro p {
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .kjc-college-name {
+
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .kjc-page {
+
+        align-items:
+            flex-start;
+
+        overflow-y: auto;
+    }
+
+    .kjc-content {
+
+        width: 94%;
+
+        padding:
+            35px 0;
+    }
+
+    .kjc-intro h1 {
+
+        font-size: 43px;
+
+        letter-spacing:
+            -2px;
+    }
+
+    .kjc-card {
+
+        padding:
+            27px 20px;
+
+        border-radius:
+            19px;
+    }
+
+    .kjc-form {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .kjc-field.full,
+    .kjc-submit {
+
+        grid-column:
+            auto;
+    }
+
+    .kjc-card-header h2 {
+
+        font-size:
+            18px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+    }
+}
+</style>
+
+
+<div class="kjc-page">
+
+    <!-- =====================================================
+         COLLEGE MAIN BUILDING BACKGROUND
+    ====================================================== -->
+
+    <div class="kjc-background">
+
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+            <source
+                src="{{ url_for('static', filename='media/campus_bg.mp4') }}"
+                type="video/mp4"
+            >
+        </video>
+
+    </div>
+
+
+    <!-- Cinematic overlay -->
+    <div class="kjc-overlay"></div>
+
+    <!-- Film grain -->
+    <div class="kjc-grain"></div>
+
+
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <main class="kjc-content">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <section class="kjc-intro">
+
+            <div class="kjc-small-title">
+                STUDENT PORTAL
+            </div>
+
+            <h1>
+                Welcome
+                <span>to KJC.</span>
+            </h1>
+
+            <p>
+                Create your student account and become part
+                of the Kristu Jayanti academic community.
+            </p>
+
+            <div class="kjc-college-name">
+                KRISTU JAYANTI
+            </div>
+
+            <div class="kjc-college-location">
+                STUDENT MANAGEMENT SYSTEM
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REGISTRATION CARD
+        ================================================== -->
+
+        <section class="kjc-card" id="registerCard">
+
+
+            <!-- College Branding -->
+
+            <div class="kjc-card-header">
+
+                <div class="kjc-mark">
+                    KJ
+                </div>
+
+                <h2>
+                    KRISTU JAYANTI
+                </h2>
+
+                <small>
+                    STUDENT REGISTRATION PORTAL
+                </small>
+
+            </div>
+
+
+            <!-- Form Heading -->
+
+            <div class="kjc-form-heading">
+
+                <h3>
+                    Create your account
+                </h3>
+
+                <p>
+                    Enter your details to continue
+                </p>
+
+            </div>
+
+
+            <!-- Registration Form -->
+
+            <form
+                method="post"
+                class="kjc-form"
+            >
+
+
+                <!-- Full Name -->
+
+                <div class="kjc-field">
+
+                    <label for="name">
+                        FULL NAME
+                    </label>
+
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Student ID -->
+
+                <div class="kjc-field">
+
+                    <label for="student_id">
+                        STUDENT ID
+                    </label>
+
+                    <input
+                        id="student_id"
+                        name="student_id"
+                        type="text"
+                        placeholder="Enter student ID"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="kjc-field full">
+
+                    <label for="email">
+                        COLLEGE EMAIL
+                    </label>
+
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="example@kjc.edu.in"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Course -->
+
+                <div class="kjc-field">
+
+                    <label for="course">
+                        COURSE
+                    </label>
+
+                    <select
+                        id="course"
+                        name="course"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            disabled
+                            selected
+                        >
+                            Select course
+                        </option>
+
+                        <option value="BCA">
+                            BCA
+                        </option>
+
+                        <option value="B.Sc Computer Science">
+                            B.Sc Computer Science
+                        </option>
+
+                        <option value="B.Com">
+                            B.Com
+                        </option>
+
+                        <option value="BBA">
+                            BBA
+                        </option>
+
+                        <option value="BA">
+                            BA
+                        </option>
+
+                        <option value="MCA">
+                            MCA
+                        </option>
+
+                        <option value="M.Sc Computer Science">
+                            M.Sc Computer Science
+                        </option>
+
+                        <option value="MBA">
+                            MBA
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Semester -->
+
+                <div class="kjc-field">
+
+                    <label for="semester">
+                        SEMESTER
+                    </label>
+
+                    <select
+                        id="semester"
+                        name="semester"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            disabled
+                            selected
+                        >
+                            Select semester
+                        </option>
+
+                        <option value="1">
+                            Semester 1
+                        </option>
+
+                        <option value="2">
+                            Semester 2
+                        </option>
+
+                        <option value="3">
+                            Semester 3
+                        </option>
+
+                        <option value="4">
+                            Semester 4
+                        </option>
+
+                        <option value="5">
+                            Semester 5
+                        </option>
+
+                        <option value="6">
+                            Semester 6
+                        </option>
+
+                        <option value="7">
+                            Semester 7
+                        </option>
+
+                        <option value="8">
+                            Semester 8
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="kjc-field full">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+                    <div class="kjc-password">
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Create a password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword()"
+                            aria-label="Show password"
+                            id="passwordButton"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="kjc-submit"
+                >
+                    CREATE STUDENT ACCOUNT
+                    &nbsp; →
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+
+            <div class="kjc-login">
+
+                Already have an account?
+
+                <a href="{{ url_for('login') }}">
+                    Login here →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PASSWORD SHOW / HIDE
+========================================================= */
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.getElementById("passwordButton");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        button.textContent = "◉";
+
+    } else {
+
+        password.type = "password";
+
+        button.textContent = "○";
+    }
+}
+
+
+/* =========================================================
+   PREMIUM 3D CARD TILT
+========================================================= */
+
+const card =
+    document.getElementById("registerCard");
+
+const page =
+    document.querySelector(".kjc-page");
+
+
+page.addEventListener(
+    "mousemove",
+    function(event) {
+
+        if (window.innerWidth < 850) {
+            return;
+        }
+
+        const rect =
+            card.getBoundingClientRect();
+
+        const mouseX =
+            event.clientX - rect.left;
+
+        const mouseY =
+            event.clientY - rect.top;
+
+        const centerX =
+            rect.width / 2;
+
+        const centerY =
+            rect.height / 2;
+
+        const rotateY =
+            ((mouseX - centerX) / centerX) * 2.2;
+
+        const rotateX =
+            ((centerY - mouseY) / centerY) * 2.2;
+
+        card.style.transform =
+            `
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateZ(0)
+            `;
+    }
+);
+
+
+page.addEventListener(
+    "mouseleave",
+    function() {
+
+        card.style.transform =
+            "rotateX(0deg) rotateY(0deg)";
+    }
+);
+
+
+/* =========================================================
+   SUBTLE INPUT DEPTH
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".kjc-field input, .kjc-field select"
+    )
+    .forEach(function(input) {
+
+        input.addEventListener(
+            "focus",
+            function() {
+
+                this.parentElement.style.transform =
+                    "translateZ(8px)";
+            }
+        );
+
+        input.addEventListener(
+            "blur",
+            function() {
+
+                this.parentElement.style.transform =
+                    "translateZ(0)";
+            }
+        );
+
+    });
+
+</script>
+
+{% endblock %}

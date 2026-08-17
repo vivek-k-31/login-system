@@ -1,0 +1,2558 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Kristu Jayanti University{% endblock %}
+
+{% block body %}
+
+<style>
+
+/* =========================================================
+   KJC PREMIUM LANDING PAGE
+   WHITE • GREEN • CLEAN • 3D • CINEMATIC
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #111;
+    font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.kjc-home {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(40,130,75,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 35%,
+            rgba(30,120,55,.08),
+            transparent 30%
+        ),
+        #ffffff;
+}
+
+
+/* Floating tree particles */
+
+.tree-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.tree-particles span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background:
+        rgba(40,150,75,.35);
+    box-shadow:
+        0 0 14px rgba(40,150,75,.25);
+    animation:
+        floatParticle linear infinite;
+}
+
+.tree-particles span:nth-child(1) {
+    left: 8%;
+    animation-duration: 13s;
+}
+
+.tree-particles span:nth-child(2) {
+    left: 20%;
+    animation-duration: 18s;
+}
+
+.tree-particles span:nth-child(3) {
+    left: 35%;
+    animation-duration: 15s;
+}
+
+.tree-particles span:nth-child(4) {
+    left: 50%;
+    animation-duration: 20s;
+}
+
+.tree-particles span:nth-child(5) {
+    left: 65%;
+    animation-duration: 14s;
+}
+
+.tree-particles span:nth-child(6) {
+    left: 80%;
+    animation-duration: 17s;
+}
+
+.tree-particles span:nth-child(7) {
+    left: 92%;
+    animation-duration: 12s;
+}
+
+@keyframes floatParticle {
+
+    0% {
+        top: 110%;
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    50% {
+        transform:
+            translateX(50px);
+    }
+
+    100% {
+        top: -10%;
+        opacity: 0;
+        transform:
+            translateX(-50px);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.kjc-nav {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 78px;
+
+    padding:
+        0 5%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        rgba(255,255,255,.88);
+
+    border-bottom:
+        1px solid rgba(0,0,0,.08);
+
+    backdrop-filter:
+        blur(18px);
+
+    z-index: 1000;
+}
+
+.kjc-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #111;
+
+    text-decoration: none;
+}
+
+.kjc-mark {
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(0,0,0,.25);
+
+    border-radius: 12px;
+
+    background:
+        #ffffff;
+
+    color: #111;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    letter-spacing: -2px;
+
+    box-shadow:
+        0 0 30px rgba(40,150,75,.12);
+}
+
+.kjc-brand strong {
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.kjc-brand small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 7px;
+
+    letter-spacing: 1.8px;
+}
+
+
+.kjc-nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+.kjc-nav-links a {
+
+    color:
+        rgba(0,0,0,.58);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    transition: .25s ease;
+}
+
+.kjc-nav-links a:hover {
+
+    color: #1d7a3a;
+}
+
+
+.kjc-nav-login {
+
+    padding:
+        10px 16px;
+
+    border:
+        1px solid rgba(0,0,0,.22);
+
+    border-radius: 30px;
+
+    color: #111 !important;
+
+    background:
+        rgba(255,255,255,.8);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.kjc-hero {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        130px 7% 90px;
+
+    overflow: hidden;
+}
+
+
+/* Green tree glow */
+
+.kjc-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: -250px;
+    bottom: -250px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(40,150,75,.14),
+            transparent 65%
+        );
+
+    filter:
+        blur(20px);
+}
+
+
+/* Hero text */
+
+.kjc-hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 48%;
+}
+
+.kjc-eyebrow {
+
+    color:
+        rgba(30,120,55,.75);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+}
+
+.kjc-hero h1 {
+
+    margin:
+        18px 0 18px;
+
+    font-size:
+        clamp(44px, 7vw, 86px);
+
+    line-height: .94;
+
+    letter-spacing:
+        -5px;
+
+    color: #111;
+}
+
+.kjc-hero h1 span {
+
+    color:
+        rgba(0,0,0,.45);
+}
+
+.kjc-hero p {
+
+    max-width: 570px;
+
+    color:
+        rgba(0,0,0,.58);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.kjc-hero-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.kjc-btn {
+
+    min-height: 48px;
+
+    padding:
+        0 21px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(0,0,0,.18);
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    transition:
+        .3s ease;
+}
+
+.kjc-btn-primary {
+
+    background: #111;
+
+    color: #fff;
+
+    border-color: #111;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.18);
+}
+
+.kjc-btn-primary:hover {
+
+    transform:
+        translateY(-3px);
+
+    background: #1d7a3a;
+
+    border-color: #1d7a3a;
+
+    box-shadow:
+        0 20px 50px rgba(30,160,75,.18);
+}
+
+.kjc-btn-outline {
+
+    color: #111;
+
+    background:
+        rgba(255,255,255,.8);
+}
+
+.kjc-btn-outline:hover {
+
+    background:
+        #f3f7f4;
+
+    color: #176b31;
+
+    border-color:
+        rgba(40,130,75,.3);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   MOVING COLLEGE IMAGE
+========================================================= */
+
+.kjc-campus {
+
+    position: absolute;
+
+    right: 2%;
+
+    width: 55%;
+
+    height: 75%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1300px;
+
+    z-index: 2;
+}
+
+.kjc-campus::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 560px;
+    height: 560px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(55,160,80,.12),
+            transparent 65%
+        );
+
+    filter:
+        blur(20px);
+}
+
+.kjc-campus-image {
+
+    position: relative;
+
+    width: 90%;
+
+    max-width: 800px;
+
+    border-radius: 22px;
+
+    opacity: 1;
+
+    filter:
+        none;
+
+    transform:
+        rotateY(-10deg)
+        rotateX(3deg)
+        translateZ(30px);
+
+    box-shadow:
+        -25px 35px 70px rgba(0,0,0,.20),
+        0 0 70px rgba(50,170,80,.10);
+
+    animation:
+        campusFloat 7s ease-in-out infinite;
+}
+
+@keyframes campusFloat {
+
+    0%,100% {
+        transform:
+            rotateY(-10deg)
+            rotateX(3deg)
+            translateY(0)
+            translateZ(30px);
+    }
+
+    50% {
+        transform:
+            rotateY(-5deg)
+            rotateX(1deg)
+            translateY(-15px)
+            translateZ(60px);
+    }
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-down {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color:
+        rgba(0,0,0,.38);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.scroll-line {
+
+    width: 40px;
+    height: 1px;
+
+    background:
+        rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.kjc-section {
+
+    position: relative;
+
+    padding:
+        110px 7%;
+
+    z-index: 2;
+}
+
+.kjc-section-header {
+
+    max-width: 720px;
+
+    margin-bottom: 45px;
+}
+
+.kjc-section-label {
+
+    color:
+        rgba(30,125,55,.72);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+.kjc-section h2 {
+
+    margin:
+        10px 0 14px;
+
+    font-size:
+        clamp(32px, 5vw, 55px);
+
+    letter-spacing:
+        -3px;
+
+    color: #111;
+}
+
+.kjc-section-header p {
+
+    color:
+        rgba(0,0,0,.52);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   GLASS CARDS
+========================================================= */
+
+.kjc-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.kjc-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 210px;
+
+    padding: 28px;
+
+    border:
+        1px solid rgba(0,0,0,.09);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98),
+            rgba(245,248,246,.92)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.10);
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        .3s ease;
+}
+
+.kjc-card:hover {
+
+    border-color:
+        rgba(40,130,75,.25);
+
+    transform:
+        translateY(-8px);
+}
+
+.kjc-card-number {
+
+    color:
+        rgba(30,125,55,.65);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.kjc-card h3 {
+
+    margin:
+        18px 0 10px;
+
+    font-size: 18px;
+
+    color: #111;
+}
+
+.kjc-card p {
+
+    margin: 0;
+
+    color:
+        rgba(0,0,0,.50);
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+.history-image {
+
+    width: 100%;
+
+    min-height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    filter:
+        none;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.18);
+
+    transition:
+        .5s ease;
+}
+
+.history-image:hover {
+
+    transform:
+        scale(1.025);
+}
+
+.history-content p {
+
+    color:
+        rgba(0,0,0,.50);
+
+    font-size: 12px;
+
+    line-height: 1.9;
+}
+
+.history-timeline {
+
+    margin-top: 25px;
+
+    border-left:
+        1px solid rgba(40,130,75,.3);
+
+    padding-left: 22px;
+}
+
+.history-year {
+
+    margin-bottom: 22px;
+
+    position: relative;
+}
+
+.history-year::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -28px;
+
+    top: 4px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background:
+        #39a956;
+
+    box-shadow:
+        0 0 15px rgba(60,180,80,.35);
+}
+
+.history-year strong {
+
+    font-size: 13px;
+
+    color: #111;
+}
+
+.history-year p {
+
+    margin:
+        5px 0 0;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   YOUTUBE
+========================================================= */
+
+.video-card {
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0,0,0,.10);
+
+    border-radius: 20px;
+
+    background: #f5f5f5;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.15);
+}
+
+.video-frame {
+
+    width: 100%;
+
+    aspect-ratio:
+        16 / 9;
+
+    border: 0;
+
+    display: block;
+}
+
+
+/* =========================================================
+   STAFF
+========================================================= */
+
+.staff-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.staff-card {
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0,0,0,.09);
+
+    border-radius: 15px;
+
+    background:
+        #ffffff;
+
+    transition:
+        .3s ease;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.08);
+}
+
+.staff-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(40,130,75,.25);
+}
+
+.staff-photo {
+
+    width: 100%;
+
+    aspect-ratio:
+        1 / 1;
+
+    object-fit: cover;
+
+    filter:
+        none;
+
+    transition:
+        .4s ease;
+}
+
+.staff-card:hover .staff-photo {
+
+    filter:
+        none;
+
+    transform:
+        scale(1.04);
+}
+
+.staff-info {
+
+    padding: 17px;
+}
+
+.staff-info strong {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #111;
+}
+
+.staff-info span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CAMPUS LIFE
+========================================================= */
+
+.life-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr;
+
+    gap: 14px;
+}
+
+.life-item {
+
+    position: relative;
+
+    min-height: 250px;
+
+    overflow: hidden;
+
+    border-radius: 17px;
+
+    border:
+        1px solid rgba(0,0,0,.08);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.10);
+}
+
+.life-item.large {
+
+    min-height: 515px;
+}
+
+.life-item img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        none;
+
+    transition:
+        .5s ease;
+}
+
+.life-item:hover img {
+
+    transform:
+        scale(1.08);
+
+    filter:
+        none;
+}
+
+.life-caption {
+
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 2;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,0,0,.48);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.life-caption small {
+
+    color:
+        rgba(210,245,215,.85);
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+}
+
+.life-caption strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 17px;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   FACTS
+========================================================= */
+
+.facts {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 1px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0,0,0,.08);
+
+    border-radius: 18px;
+
+    background:
+        rgba(0,0,0,.08);
+}
+
+.fact {
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background:
+        #ffffff;
+}
+
+.fact strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    letter-spacing:
+        -1px;
+
+    color: #111;
+}
+
+.fact span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color:
+        rgba(0,0,0,.42);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   LOGIN CTA
+========================================================= */
+
+.kjc-login-section {
+
+    position: relative;
+
+    padding:
+        100px 7% 120px;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+.kjc-login-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(45,160,75,.12),
+            transparent 65%
+        );
+}
+
+.kjc-login-section h2 {
+
+    position: relative;
+
+    margin: 0;
+
+    font-size:
+        clamp(35px, 6vw, 65px);
+
+    letter-spacing:
+        -3px;
+
+    color: #111;
+}
+
+.kjc-login-section p {
+
+    position: relative;
+
+    max-width: 500px;
+
+    margin:
+        16px auto 30px;
+
+    color:
+        rgba(0,0,0,.45);
+
+    font-size: 11px;
+}
+
+.login-buttons {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.kjc-footer {
+
+    padding:
+        30px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-top:
+        1px solid rgba(0,0,0,.08);
+
+    color:
+        rgba(0,0,0,.35);
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px) {
+
+    .kjc-hero-content {
+        width: 60%;
+    }
+
+    .kjc-campus {
+        width: 60%;
+        right: -10%;
+        opacity: .75;
+    }
+
+    .staff-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .kjc-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:750px) {
+
+    .kjc-nav-links a:not(.kjc-nav-login) {
+        display: none;
+    }
+
+    .kjc-hero {
+        min-height: 900px;
+        align-items: flex-start;
+        padding-top: 145px;
+    }
+
+    .kjc-hero-content {
+        width: 100%;
+    }
+
+    .kjc-campus {
+        width: 120%;
+        right: -25%;
+        top: 470px;
+        height: 400px;
+        opacity: .85;
+    }
+
+    .kjc-hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .history-layout {
+        grid-template-columns:
+            1fr;
+    }
+
+    .history-image {
+        min-height: 280px;
+    }
+
+    .kjc-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .staff-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .facts {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .life-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .life-item.large {
+        grid-row: span 2;
+    }
+}
+
+
+@media(max-width:500px) {
+
+    .kjc-nav {
+        padding:
+            0 18px;
+    }
+
+    .kjc-brand small {
+        display: none;
+    }
+
+    .kjc-section {
+        padding:
+            75px 20px;
+    }
+
+    .kjc-hero {
+        padding:
+            130px 20px 70px;
+    }
+
+    .kjc-hero-buttons {
+        flex-direction:
+            column;
+    }
+
+    .kjc-btn {
+        width: 100%;
+    }
+
+    .staff-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .life-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .life-item.large {
+        min-height: 350px;
+        grid-row: auto;
+    }
+
+    .facts {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .login-buttons {
+        flex-direction:
+            column;
+    }
+
+    .kjc-footer {
+        flex-direction:
+            column;
+
+        gap: 10px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   REAL TREE PHOTO
+========================================================= */
+
+.green-tree-photo {
+
+    width: 100%;
+    height: 400px;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 16px;
+
+    filter: none;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.18);
+
+    transition:
+        .5s ease;
+
+}
+
+.green-tree-photo:hover {
+
+    transform:
+        scale(1.025);
+
+    box-shadow:
+        0 35px 90px rgba(30,120,55,.20);
+
+}
+
+
+/* =========================================================
+   REAL TREE CONTAINER
+========================================================= */
+
+.green-tree-container {
+
+    min-height: 400px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        #f2f7f3;
+
+    border:
+        1px solid rgba(40,130,75,.16);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.10);
+
+}
+
+
+</style>
+
+
+<div class="kjc-home">
+
+
+    <!-- PARTICLES -->
+
+    <div class="tree-particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="kjc-nav">
+
+        <a
+            href="#top"
+            class="kjc-brand"
+        >
+
+            <div class="kjc-mark">
+                KJ
+            </div>
+
+            <div>
+
+                <strong>
+                    KRISTU JAYANTI
+                </strong>
+
+                <small>
+                    DEEMED TO BE UNIVERSITY • BENGALURU
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <div class="kjc-nav-links">
+
+            <a href="#about">
+                ABOUT
+            </a>
+
+            <a href="#history">
+                HISTORY
+            </a>
+
+            <a href="#campus">
+                CAMPUS
+            </a>
+
+            <a href="#staff">
+                STAFF
+            </a>
+
+            <a
+                href="{{ url_for('login') }}"
+                class="kjc-nav-login"
+            >
+                LOGIN ↗
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section
+        id="top"
+        class="kjc-hero"
+    >
+
+
+        <div class="kjc-hero-content">
+
+            <div class="kjc-eyebrow">
+                ESTABLISHED 1999 • BENGALURU
+            </div>
+
+
+            <h1>
+
+                Learn.
+                <br>
+
+                <span>Lead.</span>
+                <br>
+
+                Launch.
+
+            </h1>
+
+
+            <p>
+
+                Welcome to Kristu Jayanti University —
+                a vibrant academic community built around
+                knowledge, character, innovation and
+                holistic development.
+
+            </p>
+
+
+            <div class="kjc-hero-buttons">
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="kjc-btn kjc-btn-primary"
+                >
+                    STUDENT LOGIN →
+                </a>
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="kjc-btn kjc-btn-outline"
+                >
+                    ADMIN LOGIN ↗
+                </a>
+
+
+                <a
+                    href="#history"
+                    class="kjc-btn kjc-btn-outline"
+                >
+                    EXPLORE HISTORY
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOVING CAMPUS -->
+
+        <div class="kjc-campus">
+
+            <img
+                class="kjc-campus-image"
+                src="{{ url_for('static', filename='img/campus.jpg') }}"
+                alt="Kristu Jayanti Campus"
+            >
+
+        </div>
+
+
+        <div class="scroll-down">
+
+            <span class="scroll-line"></span>
+
+            SCROLL TO EXPLORE
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+        id="about"
+        class="kjc-section"
+    >
+
+        <div class="kjc-section-header">
+
+            <div class="kjc-section-label">
+                THE INSTITUTION
+            </div>
+
+            <h2>
+                A campus built for
+                <span style="color:rgba(0,0,0,.4)">
+                    tomorrow.
+                </span>
+            </h2>
+
+            <p>
+
+                Kristu Jayanti focuses on academic excellence,
+                professional competence and holistic development
+                through a diverse learning environment.
+
+            </p>
+
+        </div>
+
+
+        <div class="kjc-grid">
+
+
+            <div class="kjc-card">
+
+                <div class="kjc-card-number">
+                    01 / ACADEMICS
+                </div>
+
+                <h3>
+                    Academic Excellence
+                </h3>
+
+                <p>
+
+                    A wide range of undergraduate,
+                    postgraduate and research-oriented
+                    programmes across multiple disciplines.
+
+                </p>
+
+            </div>
+
+
+            <div class="kjc-card">
+
+                <div class="kjc-card-number">
+                    02 / CAMPUS
+                </div>
+
+                <h3>
+                    Modern Infrastructure
+                </h3>
+
+                <p>
+
+                    Classrooms, laboratories, library,
+                    auditoria, conference spaces,
+                    sports facilities and student amenities.
+
+                </p>
+
+            </div>
+
+
+            <div class="kjc-card">
+
+                <div class="kjc-card-number">
+                    03 / GREEN
+                </div>
+
+                <h3>
+                    Green Campus
+                </h3>
+
+                <p>
+
+                    The institution promotes environmental
+                    responsibility through green practices,
+                    indigenous trees, medicinal plants,
+                    water conservation and renewable energy.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FACTS
+    ====================================================== -->
+
+    <section class="kjc-section">
+
+        <div class="facts">
+
+            <div class="fact">
+
+                <strong>
+                    1999
+                </strong>
+
+                <span>
+                    ESTABLISHED
+                </span>
+
+            </div>
+
+
+            <div class="fact">
+
+                <strong>
+                    7.5L+
+                </strong>
+
+                <span>
+                    SQ FT NEW CAMPUS
+                </span>
+
+            </div>
+
+
+            <div class="fact">
+
+                <strong>
+                    100+
+                </strong>
+
+                <span>
+                    ACADEMIC PROGRAMMES
+                </span>
+
+            </div>
+
+
+            <div class="fact">
+
+                <strong>
+                    GREEN
+                </strong>
+
+                <span>
+                    CAMPUS INITIATIVES
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HISTORY
+    ====================================================== -->
+
+    <section
+        id="history"
+        class="kjc-section"
+    >
+
+        <div class="history-layout">
+
+
+            <div>
+
+                <img
+                    class="history-image"
+                    src="{{ url_for('static', filename='img/campus.jpg') }}"
+                    alt="KJ Campus"
+                >
+
+            </div>
+
+
+            <div class="history-content">
+
+                <div class="kjc-section-label">
+                    OUR JOURNEY
+                </div>
+
+                <h2>
+                    From a college
+                    to a university.
+                </h2>
+
+
+                <p>
+
+                    Kristu Jayanti College was founded in
+                    1999 and is run by Bodhi Niketan Trust,
+                    formed by members of the St. Joseph Province
+                    of the Carmelites of Mary Immaculate (CMI).
+
+                </p>
+
+
+                <div class="history-timeline">
+
+
+                    <div class="history-year">
+
+                        <strong>
+                            1999
+                        </strong>
+
+                        <p>
+                            Kristu Jayanti College was founded.
+                        </p>
+
+                    </div>
+
+
+                    <div class="history-year">
+
+                        <strong>
+                            Growth
+                        </strong>
+
+                        <p>
+                            Academic programmes, infrastructure,
+                            laboratories and student facilities
+                            expanded with the institution.
+                        </p>
+
+                    </div>
+
+
+                    <div class="history-year">
+
+                        <strong>
+                            Today
+                        </strong>
+
+                        <p>
+                            Kristu Jayanti continues as a
+                            multidisciplinary institution with
+                            a strong academic and student-focused
+                            ecosystem.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <a
+                    href="https://www.kristujayanti.edu.in/media_room/history.php"
+                    target="_blank"
+                    class="kjc-btn kjc-btn-outline"
+                    style="margin-top:20px"
+                >
+                    OFFICIAL HISTORY ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HISTORY VIDEO
+    ====================================================== -->
+
+    <section class="kjc-section">
+
+        <div class="kjc-section-header">
+
+            <div class="kjc-section-label">
+                CAMPUS STORY
+            </div>
+
+            <h2>
+                See the campus.
+            </h2>
+
+            <p>
+                Explore the Kristu Jayanti campus through
+                the official campus tour.
+            </p>
+
+        </div>
+
+
+        <div class="video-card">
+
+            <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/dnTi2KaEDj0?rel=0"
+                title="Kristu Jayanti College Campus Tour"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAFF / ADMINISTRATION
+    ====================================================== -->
+
+    <section
+        id="staff"
+        class="kjc-section"
+    >
+
+        <div class="kjc-section-header">
+
+            <div class="kjc-section-label">
+                LEADERSHIP
+            </div>
+
+            <h2>
+                People behind
+                the campus.
+            </h2>
+
+            <p>
+                Academic and administrative leadership
+                supporting the university community.
+            </p>
+
+        </div>
+
+
+        <div class="staff-grid">
+
+
+            <div class="staff-card">
+
+                <img
+                    class="staff-photo"
+                    src="https://www.kristujayanti.edu.in/assets/images/administration/fr-santhosh-mathenkunnel-cmi.jpg"
+                    alt="Fr. Santhosh Mathenkunnel CMI"
+                >
+
+                <div class="staff-info">
+
+                    <strong>
+                        Fr. Santhosh Mathenkunnel CMI
+                    </strong>
+
+                    <span>
+                        Chancellor
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="staff-card">
+
+                <img
+                    class="staff-photo"
+                    src="https://www.kristujayanti.edu.in/assets/images/administration/fr-augustine-george-cmi.jpg"
+                    alt="Fr. Dr. Augustine George CMI"
+                >
+
+                <div class="staff-info">
+
+                    <strong>
+                        Fr. Dr. Augustine George CMI
+                    </strong>
+
+                    <span>
+                        Vice Chancellor
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="staff-card">
+
+                <img
+                    class="staff-photo"
+                    src="https://www.kristujayanti.edu.in/assets/images/administration/fr-lijo-p-thomas-cmi.jpg"
+                    alt="Fr. Dr. Lijo P Thomas CMI"
+                >
+
+                <div class="staff-info">
+
+                    <strong>
+                        Fr. Dr. Lijo P Thomas CMI
+                    </strong>
+
+                    <span>
+                        Pro Vice Chancellor
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="staff-card">
+
+                <img
+                    class="staff-photo"
+                    src="https://www.kristujayanti.edu.in/assets/images/administration/dr-aloysius-edward.jpg"
+                    alt="Dr. Aloysius Edward"
+                >
+
+                <div class="staff-info">
+
+                    <strong>
+                        Dr. Aloysius Edward
+                    </strong>
+
+                    <span>
+                        Registrar
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="https://www.kristujayanti.edu.in/about/administration.php"
+            target="_blank"
+            class="kjc-btn kjc-btn-outline"
+            style="margin-top:25px"
+        >
+            VIEW FULL ADMINISTRATION ↗
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         CAMPUS LIFE
+    ====================================================== -->
+
+    <section
+        id="campus"
+        class="kjc-section"
+    >
+
+        <div class="kjc-section-header">
+
+            <div class="kjc-section-label">
+                CAMPUS LIFE
+            </div>
+
+            <h2>
+                More than a classroom.
+            </h2>
+
+            <p>
+                A student environment built around
+                learning, culture, sports and community.
+            </p>
+
+        </div>
+
+
+        <div class="life-grid">
+
+
+            <div class="life-item large">
+
+                <img
+                    src="{{ url_for('static', filename='img/campus.jpg') }}"
+                    alt="Campus"
+                >
+
+                <div class="life-caption">
+
+                    <small>
+                        CAMPUS
+                    </small>
+
+                    <strong>
+                        A place to belong.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="life-item">
+
+                <img
+                    src="{{ url_for('static', filename='img/lab.jpg') }}"
+                    alt="Laboratory"
+                >
+
+                <div class="life-caption">
+
+                    <small>
+                        INNOVATION
+                    </small>
+
+                    <strong>
+                        Learn by doing.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="life-item">
+
+                <img
+                    src="{{ url_for('static', filename='img/sports.jpg') }}"
+                    alt="Sports"
+                >
+
+                <div class="life-caption">
+
+                    <small>
+                        SPORTS
+                    </small>
+
+                    <strong>
+                        Play. Compete. Grow.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="life-item">
+
+                <img
+                    src="{{ url_for('static', filename='img/library.jpg') }}"
+                    alt="Library"
+                >
+
+                <div class="life-caption">
+
+                    <small>
+                        KNOWLEDGE
+                    </small>
+
+                    <strong>
+                        Discover more.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="life-item">
+
+                <img
+                    src="{{ url_for('static', filename='img/events.jpg') }}"
+                    alt="Campus Events"
+                >
+
+                <div class="life-caption">
+
+                    <small>
+                        COMMUNITY
+                    </small>
+
+                    <strong>
+                        Create memories.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GREEN CAMPUS
+    ====================================================== -->
+
+    <section class="kjc-section">
+
+        <div class="history-layout">
+
+
+            <div class="history-content">
+
+                <div class="kjc-section-label">
+                    GREEN CAMPUS
+                </div>
+
+                <h2>
+                    Growing with
+                    the planet.
+                </h2>
+
+                <p>
+
+                    Kristu Jayanti's green-campus initiatives
+                    focus on environmental responsibility,
+                    indigenous trees, medicinal plants,
+                    rainwater harvesting, renewable energy
+                    and water recycling.
+
+                </p>
+
+                <a
+                    href="https://www.kristujayanti.edu.in/campus/Green-Campus.php"
+                    target="_blank"
+                    class="kjc-btn kjc-btn-outline"
+                >
+                    EXPLORE GREEN CAMPUS ↗
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <!-- =================================================
+                     REAL TREE IMAGE
+                     Emoji 🌳 removed ONLY from this place
+                ================================================== -->
+
+                <div class="green-tree-container">
+
+                    <img
+                        class="green-tree-photo"
+                        src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=85"
+                        alt="Real green tree"
+                    >
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LOGIN
+    ====================================================== -->
+
+    <section
+        class="kjc-login-section"
+    >
+
+        <div class="kjc-section-label">
+            DIGITAL CAMPUS
+        </div>
+
+        <h2>
+            Your campus.
+            <br>
+            <span style="color:rgba(0,0,0,.4)">
+                One portal.
+            </span>
+        </h2>
+
+        <p>
+
+            Access academics, attendance, assignments,
+            timetable, fees, notices and student services
+            from the KJC Digital Campus.
+
+        </p>
+
+
+        <div class="login-buttons">
+
+            <a
+                href="{{ url_for('login') }}"
+                class="kjc-btn kjc-btn-primary"
+            >
+                STUDENT LOGIN →
+            </a>
+
+
+            <a
+                href="{{ url_for('login') }}"
+                class="kjc-btn kjc-btn-outline"
+            >
+                ADMIN LOGIN ↗
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="kjc-footer">
+
+        <span>
+            © 2026 KRISTU JAYANTI DIGITAL CAMPUS
+        </span>
+
+        <span>
+            BENGALURU • INDIA
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   3D CARD EFFECT
+========================================================= */
+
+document
+    .querySelectorAll(".kjc-card, .staff-card, .life-item")
+    .forEach(function(card) {
+
+        card.addEventListener(
+            "mousemove",
+            function(event) {
+
+                if (window.innerWidth < 800) {
+                    return;
+                }
+
+                const rect =
+                    this.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                const rotateX =
+                    ((rect.height / 2 - y) /
+                    (rect.height / 2)) * 2;
+
+                const rotateY =
+                    ((x - rect.width / 2) /
+                    (rect.width / 2)) * 2;
+
+                this.style.transform =
+                    `
+                    perspective(900px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateY(-5px)
+                    `;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            function() {
+
+                this.style.transform = "";
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
+
+const campus =
+    document.querySelector(
+        ".kjc-campus-image"
+    );
+
+
+window.addEventListener(
+    "mousemove",
+    function(event) {
+
+        if (!campus ||
+            window.innerWidth < 900) {
+            return;
+        }
+
+        const x =
+            (event.clientX /
+            window.innerWidth - .5);
+
+        const y =
+            (event.clientY /
+            window.innerHeight - .5);
+
+        campus.style.transform =
+            `
+            rotateY(${-10 + x * 8}deg)
+            rotateX(${3 - y * 5}deg)
+            translateX(${x * 12}px)
+            translateY(${y * 8}px)
+            translateZ(40px)
+            `;
+
+    }
+);
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealItems =
+    document.querySelectorAll(
+        ".kjc-card, .staff-card, .life-item, .fact"
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+        function(entries) {
+
+            entries.forEach(
+                function(entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.style.opacity =
+                            "1";
+
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: .12
+        }
+    );
+
+
+revealItems.forEach(
+    function(item) {
+
+        item.style.opacity = "0";
+
+        item.style.transform =
+            "translateY(25px)";
+
+        item.style.transition =
+            "opacity .7s ease, transform .7s ease";
+
+        revealObserver.observe(item);
+
+    }
+);
+
+</script>
+
+{% endblock %}

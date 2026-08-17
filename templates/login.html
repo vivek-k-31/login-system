@@ -1,0 +1,1275 @@
+{% extends "base.html" %}
+
+{% block title %}KJC | Digital Campus{% endblock %}
+
+{% block body %}
+
+<div class="kjc-page">
+
+    <!-- COLLEGE MAIN BUILDING -->
+    <div class="kjc-bg"></div>
+
+    <!-- LIGHT OVERLAY - IMAGE CLEAR-AH VISIBLE -->
+    <div class="kjc-overlay"></div>
+
+    <!-- FLOATING PARTICLES -->
+    <div class="kjc-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="kjc-content">
+
+        <!-- ======================================
+             LEFT SIDE
+             ====================================== -->
+
+        <div class="kjc-hero">
+
+            <div class="kjc-brand">
+
+                <div class="kjc-mark">
+                    KJ
+                </div>
+
+                <div class="kjc-brand-text">
+                    <strong>KRISTU JAYANTI</strong>
+
+                    <small>
+                        DEEMED TO BE UNIVERSITY
+                    </small>
+
+                    <small>
+                        BENGALURU
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="kjc-hero-text">
+
+                <div class="kjc-eyebrow">
+                    DIGITAL CAMPUS • 2026
+                </div>
+
+                <h1>
+                    Where your
+                    <br>
+                    <span>campus life</span>
+                    moves.
+                </h1>
+
+                <p>
+                    A unified digital campus for students,
+                    academics, attendance, marks, assignments,
+                    timetable and essential university services.
+                </p>
+
+            </div>
+
+
+            <div class="kjc-highlights">
+
+                <div>
+                    <strong>25+</strong>
+                    <span>Years of Excellence</span>
+                </div>
+
+                <div>
+                    <strong>01</strong>
+                    <span>Digital Campus</span>
+                </div>
+
+                <div>
+                    <strong>24×7</strong>
+                    <span>Student Access</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             LOGIN CARD
+             ====================================== -->
+
+        <div class="kjc-card">
+
+            <div class="kjc-card-header">
+
+                <div class="kjc-mini-logo">
+                    KJ
+                </div>
+
+                <div>
+                    <div class="kjc-card-title">
+                        WELCOME BACK
+                    </div>
+
+                    <div class="kjc-card-subtitle">
+                        Sign in to your student portal
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="post" class="kjc-form">
+
+                <div class="kjc-field">
+
+                    <label for="email">
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="student@kjc.edu.in"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="kjc-field">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="kjc-button"
+                >
+                    <span>ENTER PORTAL</span>
+                    <span>↗</span>
+                </button>
+
+            </form>
+
+
+            <!-- DEMO LOGIN -->
+
+            <div class="kjc-demo">
+
+                <div class="kjc-demo-title">
+                    DEMO ACCESS
+                </div>
+
+                <div class="kjc-demo-row">
+
+                    <span>STUDENT</span>
+
+                    <div>
+                        <code>student@kjc.edu.in</code>
+                        <code>student123</code>
+                    </div>
+
+                </div>
+
+
+                <div class="kjc-divider"></div>
+
+
+                <div class="kjc-demo-row">
+
+                    <span>ADMIN</span>
+
+                    <div>
+                        <code>admin@kjc.edu.in</code>
+                        <code>admin123</code>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <div class="kjc-register">
+
+                <span>
+                    New student?
+                </span>
+
+                <a href="{{ url_for('register') }}">
+                    CREATE ACCOUNT
+                </a>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="kjc-secure">
+
+                <span></span>
+
+                Secure KJC Digital Campus Access
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+
+    <div class="kjc-bottom">
+
+        <span>
+            © 2026 Kristu Jayanti
+        </span>
+
+        <span>
+            DIGITAL CAMPUS
+        </span>
+
+        <span>
+            BENGALURU
+        </span>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+.kjc-page *,
+.kjc-page *::before,
+.kjc-page *::after {
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   MAIN PAGE
+   ===================================================== */
+
+.kjc-page {
+
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    color: #111;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =====================================================
+   COLLEGE BACKGROUND
+   ===================================================== */
+
+.kjc-bg {
+
+    position: absolute;
+
+    inset: -5%;
+
+    background-image:
+        url("/static/img/campus.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    animation:
+        kjcBuildingZoom 18s
+        ease-in-out
+        infinite
+        alternate;
+
+    z-index: 0;
+}
+
+
+@keyframes kjcBuildingZoom {
+
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   LIGHT IMAGE OVERLAY
+   ===================================================== */
+
+.kjc-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.88) 0%,
+            rgba(255,255,255,0.55) 42%,
+            rgba(255,255,255,0.18) 72%,
+            rgba(255,255,255,0.30) 100%
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   PARTICLES
+   ===================================================== */
+
+.kjc-particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.kjc-particles span {
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    background: #fff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.9);
+
+    opacity: 0;
+
+    animation:
+        kjcParticle 8s
+        linear
+        infinite;
+}
+
+
+.kjc-particles span:nth-child(1) {
+    left: 12%;
+    top: 80%;
+    animation-delay: 0s;
+}
+
+.kjc-particles span:nth-child(2) {
+    left: 27%;
+    top: 65%;
+    animation-delay: 1.5s;
+}
+
+.kjc-particles span:nth-child(3) {
+    left: 52%;
+    top: 85%;
+    animation-delay: 3s;
+}
+
+.kjc-particles span:nth-child(4) {
+    left: 70%;
+    top: 60%;
+    animation-delay: 4.5s;
+}
+
+.kjc-particles span:nth-child(5) {
+    left: 84%;
+    top: 78%;
+    animation-delay: 2s;
+}
+
+.kjc-particles span:nth-child(6) {
+    left: 94%;
+    top: 40%;
+    animation-delay: 5s;
+}
+
+
+@keyframes kjcParticle {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(40px)
+            scale(.4);
+    }
+
+    25% {
+        opacity: .7;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-180px)
+            scale(1.2);
+    }
+}
+
+
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
+.kjc-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(1250px, 92%);
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        410px;
+
+    align-items: center;
+
+    gap: 90px;
+
+    padding: 60px 0 80px;
+}
+
+
+/* =====================================================
+   BRAND
+   ===================================================== */
+
+.kjc-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.kjc-mark {
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    color: #000;
+
+    border: 2px solid #000;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    box-shadow:
+        8px 8px 0 rgba(0,0,0,.18);
+
+    transform:
+        rotate(-2deg);
+}
+
+
+.kjc-brand-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    color: #000;
+}
+
+
+.kjc-brand-text strong {
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+
+    font-weight: 900;
+}
+
+
+.kjc-brand-text small {
+
+    font-size: 8px;
+
+    letter-spacing: 1.4px;
+
+    margin-top: 3px;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.kjc-hero {
+
+    animation:
+        kjcHeroIn
+        1s
+        ease
+        both;
+}
+
+
+@keyframes kjcHeroIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+.kjc-hero-text {
+
+    margin-top: 105px;
+
+    max-width: 700px;
+}
+
+
+.kjc-eyebrow {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color: #111;
+
+    margin-bottom: 18px;
+}
+
+
+.kjc-hero-text h1 {
+
+    margin: 0;
+
+    font-size:
+        clamp(48px, 6vw, 78px);
+
+    line-height: .94;
+
+    letter-spacing: -4px;
+
+    font-weight: 900;
+
+    color: #000;
+
+    text-shadow:
+        0 3px 15px rgba(255,255,255,.7);
+}
+
+
+.kjc-hero-text h1 span {
+
+    font-weight: 400;
+
+    font-style: italic;
+}
+
+
+.kjc-hero-text p {
+
+    max-width: 610px;
+
+    margin-top: 28px;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #222;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   HIGHLIGHTS
+   ===================================================== */
+
+.kjc-highlights {
+
+    display: flex;
+
+    gap: 40px;
+
+    margin-top: 50px;
+}
+
+
+.kjc-highlights div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    border-left: 2px solid #111;
+
+    padding-left: 15px;
+}
+
+
+.kjc-highlights strong {
+
+    font-size: 23px;
+
+    color: #000;
+}
+
+
+.kjc-highlights span {
+
+    margin-top: 4px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #333;
+}
+
+
+/* =====================================================
+   LOGIN CARD
+   ===================================================== */
+
+.kjc-card {
+
+    background: rgba(255,255,255,.96);
+
+    color: #000;
+
+    padding: 38px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid rgba(0,0,0,.20);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.28),
+        12px 12px 0 rgba(0,0,0,.12);
+
+    backdrop-filter:
+        blur(10px);
+
+    animation:
+        kjcCardFloat
+        5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes kjcCardFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            rotateX(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotateX(1deg);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            rotateX(0deg);
+    }
+}
+
+
+/* =====================================================
+   CARD HEADER
+   ===================================================== */
+
+.kjc-card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 30px;
+}
+
+
+.kjc-mini-logo {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    color: #fff;
+
+    border-radius: 8px;
+
+    font-weight: 900;
+
+    font-size: 19px;
+}
+
+
+.kjc-card-title {
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.kjc-card-subtitle {
+
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    color: #777;
+}
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.kjc-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.kjc-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.kjc-field label {
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+    color: #222;
+}
+
+
+.kjc-field input {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border:
+        1px solid #ccc;
+
+    border-radius: 8px;
+
+    background: #fafafa;
+
+    color: #000;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        .25s ease;
+}
+
+
+.kjc-field input::placeholder {
+
+    color: #999;
+}
+
+
+.kjc-field input:focus {
+
+    background: #fff;
+
+    border-color: #000;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,0,0,.08);
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+   ===================================================== */
+
+.kjc-button {
+
+    width: 100%;
+
+    margin-top: 4px;
+
+    padding: 15px 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #000;
+
+    color: #fff;
+
+    border:
+        1px solid #000;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+    cursor: pointer;
+
+    transition:
+        .3s ease;
+}
+
+
+.kjc-button:hover {
+
+    background: #fff;
+
+    color: #000;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0,0,0,.18);
+}
+
+
+.kjc-button .arrow {
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   DEMO
+   ===================================================== */
+
+.kjc-demo {
+
+    margin-top: 22px;
+
+    padding: 15px;
+
+    background: #f5f5f5;
+
+    border:
+        1px solid #e5e5e5;
+
+    border-radius: 8px;
+}
+
+
+.kjc-demo-title {
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 12px;
+}
+
+
+.kjc-demo-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+
+.kjc-demo-row > span {
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.kjc-demo-row div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+}
+
+
+.kjc-demo code {
+
+    font-size: 9px;
+
+    color: #555;
+
+    background: transparent;
+}
+
+
+.kjc-divider {
+
+    height: 1px;
+
+    background: #ddd;
+
+    margin: 12px 0;
+}
+
+
+/* =====================================================
+   REGISTER
+   ===================================================== */
+
+.kjc-register {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 22px;
+
+    font-size: 11px;
+
+    color: #777;
+}
+
+
+.kjc-register a {
+
+    color: #000;
+
+    font-weight: 900;
+
+    text-decoration: none;
+
+    border-bottom:
+        1px solid #000;
+
+    transition: .2s;
+}
+
+
+.kjc-register a:hover {
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   SECURE
+   ===================================================== */
+
+.kjc-secure {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    font-size: 9px;
+
+    color: #999;
+
+    letter-spacing: .5px;
+}
+
+
+.kjc-secure span {
+
+    width: 6px;
+    height: 6px;
+
+    background: #000;
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   BOTTOM
+   ===================================================== */
+
+.kjc-bottom {
+
+    position: absolute;
+
+    left: 4%;
+
+    right: 4%;
+
+    bottom: 20px;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: #111;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 950px) {
+
+    .kjc-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+        padding:
+            45px 0 90px;
+    }
+
+
+    .kjc-hero-text {
+
+        margin-top: 70px;
+    }
+
+
+    .kjc-card {
+
+        width: min(430px, 100%);
+
+        margin: auto;
+    }
+
+
+    .kjc-highlights {
+
+        margin-top: 35px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .kjc-content {
+
+        width: 90%;
+
+        padding-top: 35px;
+    }
+
+
+    .kjc-hero-text {
+
+        margin-top: 55px;
+    }
+
+
+    .kjc-hero-text h1 {
+
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .kjc-hero-text p {
+
+        font-size: 13px;
+    }
+
+
+    .kjc-highlights {
+
+        gap: 20px;
+    }
+
+
+    .kjc-highlights strong {
+
+        font-size: 18px;
+    }
+
+
+    .kjc-highlights span {
+
+        font-size: 7px;
+    }
+
+
+    .kjc-card {
+
+        padding: 25px;
+
+        border-radius: 14px;
+    }
+
+
+    .kjc-bottom {
+
+        display: none;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .kjc-bg,
+    .kjc-card,
+    .kjc-hero {
+
+        animation: none;
+    }
+
+}
+
+</style>
+
+{% endblock %}
